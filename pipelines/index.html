@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="en" data-bs-theme="light">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+        
+        
+        <link rel="shortcut icon" href="../img/favicon.ico">
+        <title>Pipelines - HCBC Platform</title>
+        <link href="../css/bootstrap.min.css" rel="stylesheet">
+        <link href="../css/fontawesome.min.css" rel="stylesheet">
+        <link href="../css/brands.min.css" rel="stylesheet">
+        <link href="../css/solid.min.css" rel="stylesheet">
+        <link href="../css/v4-font-face.min.css" rel="stylesheet">
+        <link href="../css/base.css" rel="stylesheet">
+        <link id="hljs-light" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" >
+        <link id="hljs-dark" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github-dark.min.css" disabled>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+        <script>hljs.highlightAll();</script> 
+    </head>
+
+    <body>
+        <div class="navbar fixed-top navbar-expand-lg navbar-dark bg-primary">
+            <div class="container">
+                <a class="navbar-brand" href="..">HCBC Platform</a>
+                <!-- Expander button -->
+                <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbar-collapse" aria-controls="navbar-collapse" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <!-- Expanded navigation -->
+                <div id="navbar-collapse" class="navbar-collapse collapse">
+                        <!-- Main navigation -->
+                        <ul class="nav navbar-nav">
+                            <li class="nav-item">
+                                <a href=".." class="nav-link">Home</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="./" class="nav-link active" aria-current="page">Pipelines</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="../devops/" class="nav-link">Developers</a>
+                            </li>
+                        </ul>
+
+                    <ul class="nav navbar-nav ms-md-auto">
+                        <li class="nav-item">
+                            <a href="#" class="nav-link" data-bs-toggle="modal" data-bs-target="#mkdocs_search_modal">
+                                <i class="fa fa-search"></i> Search
+                            </a>
+                        </li>
+                            <li class="nav-item">
+                                <a rel="prev" href=".." class="nav-link">
+                                    <i class="fa fa-arrow-left"></i> Previous
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a rel="next" href="../devops/" class="nav-link">
+                                    Next <i class="fa fa-arrow-right"></i>
+                                </a>
+                            </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="row">
+                    <div class="col-md-3"><div class="navbar-expand-md bs-sidebar hidden-print affix" role="complementary">
+    <div class="navbar-header">
+        <button type="button" class="navbar-toggler collapsed" data-bs-toggle="collapse" data-bs-target="#toc-collapse" title="Table of Contents">
+            <span class="fa fa-angle-down"></span>
+        </button>
+    </div>
+
+    
+    <div id="toc-collapse" class="navbar-collapse collapse card bg-body-tertiary">
+        <ul class="nav flex-column">
+            
+            <li class="nav-item" data-bs-level="1"><a href="#introduction-to-hcbc-pipelines" class="nav-link">Introduction to HCBC pipelines</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-bs-level="2"><a href="#nextflow-in-seqera-platform" class="nav-link">Nextflow in Seqera platform</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#nextflow-in-o2" class="nav-link">Nextflow in O2</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#nextflow-in-fas" class="nav-link">Nextflow in FAS</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
+        </ul>
+    </div>
+</div></div>
+                    <div class="col-md-9" role="main">
+
+<h1 id="introduction-to-hcbc-pipelines">Introduction to HCBC pipelines</h1>
+<p>Content <img alt="" src="https://img.shields.io/badge/status-WorkInProgress-yellow" /></p>
+<h2 id="nextflow-in-seqera-platform">Nextflow in Seqera platform</h2>
+<ul>
+<li>Create an user here: https://cloud.seqera.io/login</li>
+<li>Ask Platform team to add you to HCBC workspace</li>
+<li>Transfer data to HCBC S3: Ask Alex/Lorena. Files will be at our S3 bucket <code>input/rawdata</code> folder</li>
+<li>Prepare the CSV file according this <a href="https://nf-co.re/rnaseq/3.14.0/docs/usage#multiple-runs-of-the-same-sample">instructions</a>. File should look like this:</li>
+</ul>
+<pre><code class="language-csv">sample,fastq_1,fastq_2,strandedness
+CONTROL_REP1,s3path/AEG588A1_S1_L002_R1_001.fastq.gz,s3path/AEG588A1_S1_L002_R2_001.fastq.gz,auto
+CONTROL_REP1,s3path/AEG588A1_S1_L003_R1_001.fastq.gz,s3path/AEG588A1_S1_L003_R2_001.fastq.gz,auto
+CONTROL_REP1,s3path/AEG588A1_S1_L004_R1_001.fastq.gz,s3path/AEG588A1_S1_L004_R2_001.fastq.gz,auto
+</code></pre>
+<p>Use <code>bcbio_nfcore_check(csv_file)</code> to check the file is correct.</p>
+<p>You can add more columns to this file with more metadata, and use this file as the <code>coldata</code> file in the templates.</p>
+<ul>
+<li>Safe the file under <code>meta</code> folder</li>
+<li>Upload this file to our <code>Datasets</code> in Seqera using the name of the project but starting with <code>rnaseq-pi_lastname-hbc_code</code></li>
+<li>Go to <code>Launchpad</code>, select <code>nf-core_rnaseq</code> pipeline, and select the previous created <code>Datasets</code> in the <code>input</code> parameter after clicking in <code>Browser</code></li>
+<li>Select an output directory with the same name used for the <code>Dataset</code> inside the <code>results</code> folder in S3</li>
+<li>When pipeline is done, data will be copied to our on-premise HPC in the scratch system under <code>scratch/groups/hsph/hbc/bcbio/</code> folder</li>
+</ul>
+<h2 id="nextflow-in-o2">Nextflow in O2</h2>
+<p>Example of running in single node Nextflow/nf-core/rnaseq in O2.</p>
+<pre><code>#!/bin/bash
+
+#SBATCH --job-name=Nextflow      # Job name
+#SBATCH --partition=priority            # Partition name
+#SBATCH --time=1-23:59                 # Runtime in D-HH:MM format
+#SBATCH --nodes=1                      # Number of nodes (keep at 1)
+#SBATCH --ntasks=1                     # Number of tasks per node (keep at 1)
+#SBATCH --cpus-per-task=8            # CPU cores requested per task (change for threaded jobs)
+#SBATCH --mem=128G                     # Memory needed per node (total)
+#SBATCH --error=jobid_%j.err           # File to which STDERR will be written, including job ID
+#SBATCH --output=jobid_%j.out          # File to which STDOUT will be written, including job ID
+#SBATCH --mail-type=ALL                # Type of email notification (BEGIN, END, FAIL, ALL)
+
+module load java/jdk-21.0.2
+export NXF_APPTAINER_CACHEDIR=/n/app/singularity/containers/shared/bcbio/
+export NXF_SINGULARITY_LIBRARYDIR=/n/app/singularity/containers/shared/bcbio/
+
+./nextflow run nf-core/rnaseq -r 3.14.0 -profile singularity,test --outdir here -resume
+</code></pre>
+<h2 id="nextflow-in-fas">Nextflow in FAS</h2>
+<pre><code>module load jdk/21.0.2-fasrc01
+</code></pre>
+<p>Use nextflow at <code>/n/holylfs05/LABS/hsph_bioinfo/Lab/shared_resources/nextflow</code></p>
+<p>Use config file at <code>/n/holylfs05/LABS/hsph_bioinfo/Lab/shared_resources/nextflow/fas.config</code></p>
+<p>Example command to run in an interactive job:</p>
+<pre><code>/n/holylfs05/LABS/hsph_bioinfo/Lab/shared_resources/nextflow run nf-core/rnaseq -profile test,singularity --outdir tmp -c /n/holylfs05/LABS/hsph_bioinfo/Lab/shared_resources/nextflow/fas.config
+</code></pre>
+<p>For non-test data, this is the head job you need to submit. Copy first the config files and modified as  needed:</p>
+<pre><code>cp /n/holylfs05/LABS/hsph_bioinfo/Lab/shared_resources/nextflow/fas.config .
+cp /n/holylfs05/LABS/hsph_bioinfo/Lab/shared_resources/nextflow/rnaseq.config .
+</code></pre>
+<p>And then modify this template as needed before using it:</p>
+<pre><code>#!/bin/bash
+
+#SBATCH --job-name=Nextflow      # Job name
+#SBATCH --partition=shared            # Partition name
+#SBATCH --time=0-48:59                 # Runtime in D-HH:MM format
+#SBATCH --nodes=1                      # Number of nodes (keep at 1)
+#SBATCH --ntasks=1                     # Number of tasks per node (keep at 1)
+#SBATCH --mem=16G                     # Memory needed per node (total)
+#SBATCH --error=jobid_%j.err           # File to which STDERR will be written, including job ID
+#SBATCH --output=jobid_%j.out          # File to which STDOUT will be written, including job ID
+#SBATCH --mail-type=ALL                # Type of email notification (BEGIN, END, FAIL, ALL)
+
+module load jdk/21.0.2-fasrc01
+
+export NXF_APPTAINER_CACHEDIR=/n/holylfs05/LABS/hsph_bioinfo/Lab/shared_resources/nextflow/nfcore-rnaseq
+export NXF_SINGULARITY_LIBRARYDIR=/n/holylfs05/LABS/hsph_bioinfo/Lab/shared_resources/nextflow/nfcore-rnaseq
+
+OUTPUT=path_to_results
+
+/n/holylfs05/LABS/hsph_bioinfo/Lab/shared_resources/nextflow run nf-core/rnaseq -r 3.14.0 \
+  -profile singularity \
+  -c analysis.config \
+  -c rnaseq.config \ 
+  --outdir $OUTPUT -c fas.config \
+   -resume
+</code></pre></div>
+            </div>
+        </div>
+
+        <footer class="col-md-12">
+            <hr>
+            <p>Documentation built with <a href="https://www.mkdocs.org/">MkDocs</a>.</p>
+        </footer>
+        <script src="../js/bootstrap.bundle.min.js"></script>
+        <script>
+            var base_url = "..",
+                shortcuts = {"help": 191, "next": 78, "previous": 80, "search": 83};
+        </script>
+        <script src="../js/base.js"></script>
+        <script src="../search/main.js"></script>
+
+        <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="searchModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="searchModalLabel">Search</h4>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <p>From here you can search these documents. Enter your search terms below.</p>
+                <form>
+                    <div class="form-group">
+                        <input type="search" class="form-control" placeholder="Search..." id="mkdocs-search-query" title="Type search term here">
+                    </div>
+                </form>
+                <div id="mkdocs-search-results" data-no-results-text="No results found"></div>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div><div class="modal" id="mkdocs_keyboard_modal" tabindex="-1" role="dialog" aria-labelledby="keyboardModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="keyboardModalLabel">Keyboard Shortcuts</h4>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th style="width: 20%;">Keys</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="help shortcut"><kbd>?</kbd></td>
+                    <td>Open this help</td>
+                  </tr>
+                  <tr>
+                    <td class="next shortcut"><kbd>n</kbd></td>
+                    <td>Next page</td>
+                  </tr>
+                  <tr>
+                    <td class="prev shortcut"><kbd>p</kbd></td>
+                    <td>Previous page</td>
+                  </tr>
+                  <tr>
+                    <td class="search shortcut"><kbd>s</kbd></td>
+                    <td>Search</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div>
+
+    </body>
+</html>
