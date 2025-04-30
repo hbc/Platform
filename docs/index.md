@@ -65,7 +65,7 @@ Make sure the version is **0.4.*** or later.
 Use the app in the dropdown below to use the HBC app to set up a project's name. This name will be used for O2, FAS, GitHub and Dropbox. This name is likely already defined in the Trello card.
 
 <details>
-<summary><b>Click here to see the HBC app for naming a project</b></summary>
+<summary><b>Click here to use the HBC app for naming a project</b></summary>
 <p align="center"><iframe src="https://hcbc.connect.hms.harvard.edu/content/8cd62872-0ec9-4905-8920-c745d2375758/" width="800px" height="1000px" data-external="1"></iframe></p>
 </details>
 
