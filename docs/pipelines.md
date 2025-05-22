@@ -164,14 +164,14 @@ To run your data, prepare input file following this [doc](https://nf-co.re/viral
 module load jdk/21.0.2-fasrc01
 ```
 
-Use nextflow at `/n/holylfs05/LABS/hsph_bioinfo/Lab/shared_resources/nextflow`
+Use nextflow at `/n/holylfs05/LABS/hsph_bioinfo/Lab/shared_resources/nextflow/nextflow`
 
 Use config file at `/n/holylfs05/LABS/hsph_bioinfo/Lab/shared_resources/nextflow/fas.config`
 
 Example command to run in an interactive job:
 
 ```
-/n/holylfs05/LABS/hsph_bioinfo/Lab/shared_resources/nextflow run nf-core/rnaseq -profile test,singularity --outdir tmp -c /n/holylfs05/LABS/hsph_bioinfo/Lab/shared_resources/nextflow/fas.config
+/n/holylfs05/LABS/hsph_bioinfo/Lab/shared_resources/nextflow/nextflow run nf-core/rnaseq -profile test,singularity --outdir tmp -c /n/holylfs05/LABS/hsph_bioinfo/Lab/shared_resources/nextflow/fas.config
 ```
 
 For non-test data, this is the head job you need to submit. Copy first the config files and modified as  needed:
@@ -203,7 +203,7 @@ export NXF_SINGULARITY_LIBRARYDIR=/n/holylfs05/LABS/hsph_bioinfo/Lab/shared_reso
 
 OUTPUT=path_to_results
 
-/n/holylfs05/LABS/hsph_bioinfo/Lab/shared_resources/nextflow run nf-core/rnaseq -r 3.14.0 \
+/n/holylfs05/LABS/hsph_bioinfo/Lab/shared_resources/nextflow/nextflow run nf-core/rnaseq -r 3.14.0 \
   -profile singularity \
   -c analysis.config \
   -c rnaseq.config \ 
