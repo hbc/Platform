@@ -159,6 +159,10 @@ To run your data, prepare input file following this [doc](https://nf-co.re/viral
 
 ## Nextflow in FAS
 
+We use FAS to run pipelines in scratch, main storage location for data is still O2. 
+
+- Run pipelines in scratch: `/n/netscratch/hsph_bioinfo/Lab`
+- Keep downstream analysis in PIs folder: `/n/holylfs05/LABS/hsph_bioinfo/Lab/PIs`
 
 ```
 module load jdk/21.0.2-fasrc01
