@@ -1,0 +1,936 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+      
+        <link rel="next" href="pipelines/">
+      
+      
+      <link rel="icon" href="theme_img/HBC_logo.png">
+      <meta name="generator" content="mkdocs-1.5.3, mkdocs-material-9.5.17">
+    
+    
+      
+        <title>HCBC Platform</title>
+      
+    
+    
+      <link rel="stylesheet" href="assets/stylesheets/main.bcfcd587.min.css">
+      
+        
+        <link rel="stylesheet" href="assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inter:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Inter";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="stylesheets/extra.css">
+    
+    <script>__md_scope=new URL(".",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+   <link href="assets/stylesheets/glightbox.min.css" rel="stylesheet"/><style>
+    html.glightbox-open { overflow: initial; height: 100%; }
+    .gslide-title { margin-top: 0px; user-select: text; }
+    .gslide-desc { color: #666; user-select: text; }
+    .gslide-image img { background: white; }
+    .gscrollbar-fixer { padding-right: 15px; }
+    .gdesc-inner { font-size: 0.75rem; }
+    body[data-md-color-scheme="slate"] .gdesc-inner { background: var(--md-default-bg-color);}
+    body[data-md-color-scheme="slate"] .gslide-title { color: var(--md-default-fg-color);}
+    body[data-md-color-scheme="slate"] .gslide-desc { color: var(--md-default-fg-color);}</style> <script src="assets/javascripts/glightbox.min.js"></script></head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="blue-grey" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#welcome-to-hcbc-platform" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+
+
+<!-- Original Header -->
+
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="." title="HCBC Platform" class="md-header__button md-logo" aria-label="HCBC Platform" data-md-component="logo">
+      
+  <img src="theme_img/HBC_logo_2.png" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            HCBC Platform
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Home
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme)" data-md-color-scheme="default" data-md-color-primary="blue-grey" data-md-color-accent="indigo"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m14.3 16-.7-2h-3.2l-.7 2H7.8L11 7h2l3.2 9h-1.9M20 8.69V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12 20 8.69m-9.15 3.96h2.3L12 9l-1.15 3.65Z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="blue-grey" data-md-color-accent="indigo"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_2" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12 20 8.69Z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="blue-grey" data-md-color-accent="indigo"  aria-label="Switch to system preference"  type="radio" name="__palette" id="__palette_2">
+    
+      <label class="md-header__button md-icon" title="Switch to system preference" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12c0-2.42-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12 20 8.69Z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var media,input,key,value,palette=__md_get("__palette");if(palette&&palette.color){"(prefers-color-scheme)"===palette.color.media&&(media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']"),palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent"));for([key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+  </nav>
+  
+</header>
+
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+    
+  
+  
+    <li class="md-tabs__item md-tabs__item--active">
+      <a href="." class="md-tabs__link">
+        
+  
+    
+  
+  Home
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="pipelines/" class="md-tabs__link">
+        
+  
+    
+  
+  Pipelines
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="environments/" class="md-tabs__link">
+        
+  
+    
+  
+  Tools environments
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="devops/" class="md-tabs__link">
+        
+  
+    
+  
+  Platform members
+
+      </a>
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+  <div class="md-sidebar md-sidebar--primary" data-md-component="navigation">
+    <div class="md-sidebar__scrollwrap">
+      <div class="md-sidebar__inner">
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#set-up-the-package" class="md-nav__link">
+    <span class="md-ellipsis">
+      Set up the package
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#general-project" class="md-nav__link">
+    <span class="md-ellipsis">
+      General Project
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="General Project">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#create-the-rstudio-project" class="md-nav__link">
+    <span class="md-ellipsis">
+      Create the Rstudio project
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#using-the-template-reports" class="md-nav__link">
+    <span class="md-ellipsis">
+      Using the template reports
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#setting-up-your-workspace-in-o2" class="md-nav__link">
+    <span class="md-ellipsis">
+      Setting up your workspace in O2
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#setting-up-github-and-rstudio" class="md-nav__link">
+    <span class="md-ellipsis">
+      Setting up GitHub and RStudio
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Setting up GitHub and RStudio">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#getting-the-git-tab" class="md-nav__link">
+    <span class="md-ellipsis">
+      Getting the Git tab
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#creating-the-first-commit" class="md-nav__link">
+    <span class="md-ellipsis">
+      Creating the first commit
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pushing-our-initial-commit" class="md-nav__link">
+    <span class="md-ellipsis">
+      Pushing our initial commit
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Pushing our initial commit">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#expired-or-non-existent-github-token" class="md-nav__link">
+    <span class="md-ellipsis">
+      Expired or non-existent GitHub token
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#making-your-first-edit" class="md-nav__link">
+    <span class="md-ellipsis">
+      Making your first edit
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Making your first edit">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#editing-the-readmemd" class="md-nav__link">
+    <span class="md-ellipsis">
+      Editing the README.md
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pushing-the-edit-to-github" class="md-nav__link">
+    <span class="md-ellipsis">
+      Pushing the edit to GitHub
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      </div>
+    </div>
+  </div>
+
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+<h1 id="welcome-to-hcbc-platform">Welcome to HCBC Platform<a class="headerlink" href="#welcome-to-hcbc-platform" title="Permanent link">&para;</a></h1>
+<p>Welcome to our Platform guidelines web-page. Here analysts and developers will find guidelines on how to work with our most common environments.</p>
+<p>We are developing platforms for each analysis type we have experience with at HCBC.</p>
+<p>Most analyses will follow the similar trajectory for set-up. We will note where the trajectories diverge with tables where you will select the appropriate analysis.</p>
+<h2 id="set-up-the-package">Set up the package<a class="headerlink" href="#set-up-the-package" title="Permanent link">&para;</a></h2>
+<details>
+  <summary>O2 instructions- Click to expand!</summary>
+
+Log onto O2 via the command line and check two things (first-time only): 
+
+   * Remove `bcbio` from you `PATH` by commenting the line in your `.bashrc` if you have it
+   * Remove any path you load using the R env variables that could be in your `.Rprofile` or `.bashrc`
+
+Go to the [O2 Portal](https://o2portal.rc.hms.harvard.edu/) and select `HMS-RC Application`, then `RStudio Environment`
+<p align="center"><a class="glightbox" href="./img/O2_portal_page_with_label.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img src="./img/O2_portal_page_with_label.png" width="700"></a></p>
+
+Start Rstudio with using your desired partition, memory, core and time directives. Add these modules to "Modules to be loaded":
+  <div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>git/2.9.5  gcc/9.2.0 imageMagick/7.1.0 geos/3.10.2 cmake/3.22.2 R/4.3.1 fftw/3.3.10 gdal/3.1.4 udunits/2.2.28  boost/1.75.0
+</code></pre></div>
+   Click "Launch"
+
+<p align="center"><a class="glightbox" href="img/O2_portal_request.gif" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img src="img/O2_portal_request.gif" width="700"></a></p>
+
+Open RStudio by clicking on the "Connect to RStudio Server"
+
+<p align="center"><a class="glightbox" href="img/O2_connect_to_RStudio_with_label.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img src="img/O2_connect_to_RStudio_with_label.png" width="700"></a></p>
+
+When the session is started, set your library path by typing this command in your console Rstudio window in order to be able to load `bcbioR`:
+
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>.libPaths(&quot;/n/app/bcbio/R4.3.1&quot;)
+</code></pre></div>
+</details>
+
+<p></p>
+Next, load <code>bcbioR</code> with:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>library(bcbioR)
+</code></pre></div>
+<p>Check the package version of <code>bcbioR</code> using:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>packageVersion(&quot;bcbioR&quot;)
+</code></pre></div>
+<p>Make sure the version is <strong>0.4.*</strong> or later.</p>
+<p align="center"><a class="glightbox" href="./img/Version_check_bcbioR.gif" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img src="./img/Version_check_bcbioR.gif" width="700"></a></p>
+
+<blockquote>
+<p>Note: If you are working in your local environment, install <code>bcbioR</code> with
+<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>devtools::install_github(&quot;bcbio/bcbioR&quot;,build_manual = TRUE, build_vignettes = TRUE)
+</code></pre></div></p>
+</blockquote>
+<h2 id="general-project">General Project<a class="headerlink" href="#general-project" title="Permanent link">&para;</a></h2>
+<p>Use the app in the dropdown below to use the HBC app to set up a project's name. This name will be used for O2, FAS, GitHub and Dropbox. This name is likely already defined in the Trello card.</p>
+<details>
+<summary><b>Click here to use the HBC app for naming a project</b></summary>
+<p align="center"><iframe src="https://hcbc.connect.hms.harvard.edu/content/8cd62872-0ec9-4905-8920-c745d2375758/" width="800px" height="1000px" data-external="1"></iframe></p>
+</details>
+
+<p>This set up needs <a href="https://github.com/bcbio/bcbioR">bcbioR</a> and <a href="https://usethis.r-lib.org">usethis</a> packages. If you are working on the O2 Portal <code>usethis</code> is within <code>/n/app/bcbio/R4.3.1</code>, so you will not need to install it. Also, <code>usethis</code> is a dependency of <code>bcbioR</code>, so if you are working locally it should have come along with the download of <code>bcbioR</code>.</p>
+<h3 id="create-the-rstudio-project">Create the Rstudio project<a class="headerlink" href="#create-the-rstudio-project" title="Permanent link">&para;</a></h3>
+<p>Assign the path that you will be using as the path for your project to the object <code>project_path</code> into the <code>/n/data1/cores/bcbio/PIs</code> space on O2:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>project_path &lt;- &quot;/n/data1/cores/bcbio/PIs/PI_name/lastname_postdoc_rnaseq_human_heart_hbc00000&quot;
+</code></pre></div>
+<p>Now, we will need to create a directory using this path to put our analysis in. If this directory already exists, then you can skip this step. The directory creation can be done with this command:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>dir.create(project_path)
+</code></pre></div>
+<p>Now, we can open an Rproject for our analysis in this path using:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>usethis::proj_activate(project_path)
+</code></pre></div>
+<blockquote>
+<p>Note: This will restart the session in the project directory. This restart will clear the <code>.libPaths("/n/app/bcbio/R4.3.1")</code> and <code>library(bcbioR)</code> that we used earlier, so we will need to re-do them in the following steps. </p>
+</blockquote>
+<h2 id="using-the-template-reports">Using the template reports<a class="headerlink" href="#using-the-template-reports" title="Permanent link">&para;</a></h2>
+<p>Many analyses have template reports that you can use. You can use these by using the approriate <code>bcbioR::bcbio_templates()</code> command from the table below:</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: center;">Type of Analysis</th>
+<th style="text-align: left;"><code>bcbioR::bcbio_templates()</code> command</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;">Bulk RNA-seq <a class="glightbox" href="https://img.shields.io/badge/status-stable-blue" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="https://img.shields.io/badge/status-stable-blue" /></a></td>
+<td style="text-align: left;"><code>bcbioR::bcbio_templates(type="rnaseq", outpath="reports")</code></td>
+</tr>
+<tr>
+<td style="text-align: center;">Single-cell RNA-seq <a class="glightbox" href="https://img.shields.io/badge/status-beta-yellow" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="https://img.shields.io/badge/status-beta-yellow" /></a></td>
+<td style="text-align: left;"><code>bcbioR::bcbio_templates(type="singlecell", outpath="reports")</code></td>
+</tr>
+<tr>
+<td style="text-align: center;">ChIP-Seq <a class="glightbox" href="https://img.shields.io/badge/status-beta-yellow" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="https://img.shields.io/badge/status-beta-yellow" /></a></td>
+<td style="text-align: left;"><code>bcbioR::bcbio_templates(type="chipseq", outpath="reports")</code></td>
+</tr>
+<tr>
+<td style="text-align: center;">CellChat <a class="glightbox" href="https://img.shields.io/badge/status-draft-grey" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="https://img.shields.io/badge/status-draft-grey" /></a></td>
+<td style="text-align: left;"><strong>Under development:</strong> <code>bcbioR::bcbio_templates(type="singlecell_delux", outpath="reports")</code></td>
+</tr>
+<tr>
+<td style="text-align: center;">COSMX <a class="glightbox" href="https://img.shields.io/badge/status-draft-grey" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="https://img.shields.io/badge/status-draft-grey" /></a></td>
+<td style="text-align: left;"><code>bcbioR::bcbio_templates(type="spatial", outpath="reports")</code></td>
+</tr>
+<tr>
+<td style="text-align: center;">DNA Methylation</td>
+<td style="text-align: left;"><strong>Under development</strong></td>
+</tr>
+</tbody>
+</table>
+<h2 id="setting-up-your-workspace-in-o2">Setting up your workspace in O2<a class="headerlink" href="#setting-up-your-workspace-in-o2" title="Permanent link">&para;</a></h2>
+<p>We will now add the <code>.libPath()</code> that is appropriate for our type of analysis. You can use the table below to determine which <code>.libPath()</code> is appropriate for your analysis:</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: center;">Type of Analysis</th>
+<th style="text-align: left;"><code>.libPath()</code> command</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;">Bulk RNA-seq</td>
+<td style="text-align: left;"><code>.libPaths("/n/app/bcbio/R4.3.1_rnaseq")</code></td>
+</tr>
+<tr>
+<td style="text-align: center;">Single-cell RNA-seq</td>
+<td style="text-align: left;"><code>.libPaths("/n/app/bcbio/R4.3.1_singlecell")</code></td>
+</tr>
+<tr>
+<td style="text-align: center;">ChIP-Seq</td>
+<td style="text-align: left;"><code>.libPaths("/n/app/bcbio/R4.3.1_chipseq")</code></td>
+</tr>
+<tr>
+<td style="text-align: center;">CellChat</td>
+<td style="text-align: left;"><code>.libPaths("/n/app/bcbio/R4.3.1_cellchat")</code></td>
+</tr>
+<tr>
+<td style="text-align: center;">DNA Methylation</td>
+<td style="text-align: left;"><code>.libPaths("/n/app/bcbio/R4.3.1_methylation")</code></td>
+</tr>
+</tbody>
+</table>
+<p>Since our loaded libraries were wiped when we created a new project, we will need to reload <code>bcbioR</code>:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a>library(bcbioR)
+</code></pre></div>
+<p>Once again, let's just double check our version of <code>bcbioR</code> to make sure we are using version <strong>0.4.</strong> or later.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a>packageVersion(&quot;bcbioR&quot;)
+</code></pre></div>
+<p>Next, we need to set the library that <code>bcbioR</code> will use each time you open up this RStudio project. By using the <code>bcbioR::use_library()</code>, you will be adding the path to your project <code>.Rprofile</code> and this will be sourced each time when you open this RStudio project.</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: center;">Type of Analysis</th>
+<th style="text-align: left;"><code>bcbioR::use_library()</code> command</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;">Bulk RNA-seq</td>
+<td style="text-align: left;"><code>bcbioR::use_library("/n/app/bcbio/R4.3.1_rnaseq")</code></td>
+</tr>
+<tr>
+<td style="text-align: center;">Single-cell RNA-seq</td>
+<td style="text-align: left;"><code>bcbioR::use_library("/n/app/bcbio/R4.3.1_singlecell")</code></td>
+</tr>
+<tr>
+<td style="text-align: center;">ChIP-Seq</td>
+<td style="text-align: left;"><code>bcbioR::use_library("/n/app/bcbio/R4.3.1_chipseq")</code></td>
+</tr>
+<tr>
+<td style="text-align: center;">CellChat</td>
+<td style="text-align: left;"><code>bcbioR::use_library("/n/app/bcbio/R4.3.1_cellchat")</code></td>
+</tr>
+<tr>
+<td style="text-align: center;">DNA Methylation</td>
+<td style="text-align: left;"><code>bcbioR::use_library("/n/app/bcbio/R4.3.1_methylation")</code></td>
+</tr>
+</tbody>
+</table>
+<p>Now, we will use <code>bcbioR</code> to set-up the directory structure that we will be using for our analysis using the following command:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a>bcbioR::bcbio_templates(type=&quot;base&quot;, outpath=&quot;.&quot;, org=&quot;hcbc&quot;)
+</code></pre></div>
+<h2 id="setting-up-github-and-rstudio">Setting up GitHub and RStudio<a class="headerlink" href="#setting-up-github-and-rstudio" title="Permanent link">&para;</a></h2>
+<p>Now, we will connect O2 with GitHub. First, check in your Home directory if a <code>.gitconfig</code> file exists. <strong><em>You should only need to do this once.</em></strong> The contents should look like:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a>[credential]
+<a id="__codelineno-11-2" name="__codelineno-11-2" href="#__codelineno-11-2"></a>    helper = store
+<a id="__codelineno-11-3" name="__codelineno-11-3" href="#__codelineno-11-3"></a>[user]
+<a id="__codelineno-11-4" name="__codelineno-11-4" href="#__codelineno-11-4"></a>    email = your_email@gmail.com
+<a id="__codelineno-11-5" name="__codelineno-11-5" href="#__codelineno-11-5"></a>    name = your_GitHub_username
+</code></pre></div>
+<p>Where <code>your_email@gmail.com</code> is the e-mail associated with your GitHub account and <code>your_GitHub_username</code> is your GitHub username.</p>
+<p>If you do not have a <code>.gitconfig</code> file in your Home directory, follow the instructions in the dropdown below to create a <code>.gitconfig</code> file. </p>
+<details>
+<summary><b>Click here for instructions for making a <code>.gitconfig</code> file</b></summary>
+<br>In order to make a <code>.gitconfig</code>, you will need to run the following command:<br><br>
+<pre>
+usethis::use_git_config(user.name = "your_GitHub_username", user.email = "your_email@gmail.com")
+</pre>
+You will replace <code>your_GitHub_username</code> with your GitHub username and <code>your_email@gmail.com</code> with the e-mail associated with your GitHub account.<br><br>
+<blockquote>
+Reminder: If you already have your GitHub username and e-mail associated with your GitHub account in your `.gitconfig` file then you can skip this step.
+</blockquote>
+Click on circular arrow in the top right of the <code>Files</code> tab called <code>Refresh file listing</code>. You can check that you have successfully made this <code>.gitconfig</code> file by looking for the hidden file in your home directory. The content should look like:<br><br>
+<pre>
+[credential]
+    helper = store
+[user]
+    email = your_email@gmail.com
+    name = your_GitHub_username
+</pre>
+<blockquote>
+Note: In order to see hidden file in your file browser on the O2 Portal, you will need to click on the cog in the top right of the <code>Files</code> tab and select <code>Show Hidden Files</code>.
+</blockquote>
+<hr />
+</details>
+
+<h3 id="getting-the-git-tab">Getting the Git tab<a class="headerlink" href="#getting-the-git-tab" title="Permanent link">&para;</a></h3>
+<p>Now, we would like to get the Git tab into our Workspace Browser (where <code>Environment</code>, <code>History</code>, <code>Connections</code> and <code>Tutorial</code> tabs are located). We show this transition below:</p>
+<p align="center"><a class="glightbox" href="./img/Git_pane_RStudio.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img src="./img/Git_pane_RStudio.png" width="1000"></a></p>
+
+<p>In order to do this we will use the following command:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a>usethis::use_git()
+</code></pre></div>
+<p>This command is the command one would usually use in order to make a commit. However, if we choose to not make a commit and then restart R, it will give us our Git tab in the Workspace Browser. This command should return:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a>✔ Setting active project to &quot;/home/wig051/git_demo&quot;.
+<a id="__codelineno-13-2" name="__codelineno-13-2" href="#__codelineno-13-2"></a>✔ Initialising Git repo.
+<a id="__codelineno-13-3" name="__codelineno-13-3" href="#__codelineno-13-3"></a>✔ Adding &quot;.Rdata&quot;, &quot;.httr-oauth&quot;, &quot;.DS_Store&quot;, and &quot;.quarto&quot; to .gitignore.
+<a id="__codelineno-13-4" name="__codelineno-13-4" href="#__codelineno-13-4"></a>ℹ There are 6 uncommitted files:
+<a id="__codelineno-13-5" name="__codelineno-13-5" href="#__codelineno-13-5"></a>• .gitignore
+<a id="__codelineno-13-6" name="__codelineno-13-6" href="#__codelineno-13-6"></a>• .Rprofile
+<a id="__codelineno-13-7" name="__codelineno-13-7" href="#__codelineno-13-7"></a>• DataManagement-Checklist.pdf
+<a id="__codelineno-13-8" name="__codelineno-13-8" href="#__codelineno-13-8"></a>• information.R
+<a id="__codelineno-13-9" name="__codelineno-13-9" href="#__codelineno-13-9"></a>• README.md
+<a id="__codelineno-13-10" name="__codelineno-13-10" href="#__codelineno-13-10"></a>• reports/
+<a id="__codelineno-13-11" name="__codelineno-13-11" href="#__codelineno-13-11"></a>! Is it ok to commit them?
+<a id="__codelineno-13-12" name="__codelineno-13-12" href="#__codelineno-13-12"></a>
+<a id="__codelineno-13-13" name="__codelineno-13-13" href="#__codelineno-13-13"></a>1: Yes
+<a id="__codelineno-13-14" name="__codelineno-13-14" href="#__codelineno-13-14"></a>2: Negative
+<a id="__codelineno-13-15" name="__codelineno-13-15" href="#__codelineno-13-15"></a>3: Not now
+</code></pre></div>
+<p>We do not want to commit these files yet, so select one of the answers like <code>Negative</code>, <code>No way</code> or <code>No</code>.</p>
+<blockquote>
+<p>Note: It is unclear why Git gives us three choices. The possible choices are re-arranged each time and have different text. So your option may vary a bit from these, select one of the appropriate options for <strong>NOT</strong> commiting.</p>
+</blockquote>
+<p>Next, you will be prompted as to whether you want to restart R:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a>A restart of RStudio is required to activate the Git pane.
+<a id="__codelineno-14-2" name="__codelineno-14-2" href="#__codelineno-14-2"></a>Restart now?
+<a id="__codelineno-14-3" name="__codelineno-14-3" href="#__codelineno-14-3"></a>
+<a id="__codelineno-14-4" name="__codelineno-14-4" href="#__codelineno-14-4"></a>1: For sure
+<a id="__codelineno-14-5" name="__codelineno-14-5" href="#__codelineno-14-5"></a>2: Negative
+<a id="__codelineno-14-6" name="__codelineno-14-6" href="#__codelineno-14-6"></a>3: Not now
+</code></pre></div>
+<p>We will need to restart R in order to get the Git tab in our R Studio, so select <code>For sure</code>, <code>Yeah</code> or some other option for answering in the affirmative. </p>
+<h3 id="creating-the-first-commit">Creating the first commit<a class="headerlink" href="#creating-the-first-commit" title="Permanent link">&para;</a></h3>
+<p>Now, we are going to create our first commit. In order to do this, we need to:</p>
+<ol>
+<li>Navigate to the Git tab in our Workspace Browser</li>
+<li>Left-click to check the "Staged" checkboxes next to <code>README.md</code> and <code>.gitignore</code> to select the files that we would like to add to our first commit</li>
+<li>Left-click <kbd>Commit</kbd> in the Git tab</li>
+<li>Add a message for our commit</li>
+<li>Left-click <kbd>Commit</kbd> underneath the textbox where we added the message for our commit</li>
+<li>Close both Git windows</li>
+</ol>
+<p>These steps are summarized in the GIF below:</p>
+<p align="center"><a class="glightbox" href="./img/Initial_commit.gif" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img src="./img/Initial_commit.gif" width="1000"></a></p>
+
+<h3 id="pushing-our-initial-commit">Pushing our initial commit<a class="headerlink" href="#pushing-our-initial-commit" title="Permanent link">&para;</a></h3>
+<p>Now we will use the function to push these changes to GitHub with the following command:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a>usethis::use_github(org=&quot;hbc&quot;, private=TRUE)
+</code></pre></div>
+<p>If you do not have a valid GitHub token, this will give you an error (see <a href="#expired-or-non-existent-github-token">below</a>). If you already have a valid GitHub token, you will get this text in your console and it will push this repository to the HBC GitHub with the following output:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a>ℹ Defaulting to &quot;https&quot; Git protocol.
+<a id="__codelineno-16-2" name="__codelineno-16-2" href="#__codelineno-16-2"></a>✔ Setting active project to &quot;/home/wig051/git_demo&quot;.
+<a id="__codelineno-16-3" name="__codelineno-16-3" href="#__codelineno-16-3"></a>✔ Creating private GitHub repository &quot;hbc/git_demo&quot;.
+<a id="__codelineno-16-4" name="__codelineno-16-4" href="#__codelineno-16-4"></a>✔ Setting remote &quot;origin&quot; to &quot;https://github.com/hbc/git_demo.git&quot;.
+<a id="__codelineno-16-5" name="__codelineno-16-5" href="#__codelineno-16-5"></a>✔ Pushing &quot;master&quot; branch to GitHub and setting &quot;origin/master&quot; as upstream branch.
+<a id="__codelineno-16-6" name="__codelineno-16-6" href="#__codelineno-16-6"></a>✔ Opening URL &lt;https://github.com/hbc/git_demo&gt;.
+</code></pre></div>
+<p>If the push is successful, then it will look like this GIF below:</p>
+<p align="center"><a class="glightbox" href="./img/GitHub_initial_push.gif" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img src="./img/GitHub_initial_push.gif" width="1000"></a></p>
+
+<blockquote>
+<p>Note: You might get a GitHub 404 error page (see image below) when you do your first push to GitHub. Just refresh the page in your browser and it should be resolve itself.
+<p align="center"><a class="glightbox" href="./img/GitHub_404_error_with_label.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img src="./img/GitHub_404_error_with_label.png" width="700"></a></p></p>
+</blockquote>
+<h4 id="expired-or-non-existent-github-token">Expired or non-existent GitHub token<a class="headerlink" href="#expired-or-non-existent-github-token" title="Permanent link">&para;</a></h4>
+<p>However, if your token is expired or this is your first time using GitHub from O2, then you will get this message:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-17-1" name="__codelineno-17-1" href="#__codelineno-17-1"></a>ℹ Defaulting to &quot;https&quot; Git protocol.
+<a id="__codelineno-17-2" name="__codelineno-17-2" href="#__codelineno-17-2"></a>✔ Setting active project to &quot;/home/wig051/git_demo&quot;.
+<a id="__codelineno-17-3" name="__codelineno-17-3" href="#__codelineno-17-3"></a>Error in `usethis::use_github()`:
+<a id="__codelineno-17-4" name="__codelineno-17-4" href="#__codelineno-17-4"></a>✖ Unable to discover a GitHub personal access token.
+<a id="__codelineno-17-5" name="__codelineno-17-5" href="#__codelineno-17-5"></a>ℹ A token is required in order to create and push to a new repo.
+<a id="__codelineno-17-6" name="__codelineno-17-6" href="#__codelineno-17-6"></a>☐ Call usethis::gh_token_help() for help configuring a token.
+<a id="__codelineno-17-7" name="__codelineno-17-7" href="#__codelineno-17-7"></a>Run `rlang::last_trace()` to see where the error occurred.
+</code></pre></div>
+<p>If this is the case, then you will need to create a new GitHub token, click on the dropdown box below for instructions on how to create a new GitHub token.</p>
+<details>
+<summary><b>Click here to see how to create a GitHub Token</b></summary>
+<br>The first thing we will need to do when setting up our GitHub token is to set-up our credential helper. We can do this by left-clicking on the <code>Terminal</code> table in the Console Window. You may need to load Git in the Terminal using:<br><br>
+<pre>
+module load git
+</pre>
+Then you can provide the following line of code to store your GitHub token for future O2 sessions:<br><br>
+<pre>
+git config --global credential.helper store
+</pre>
+This process is summarized in the GIF below:<br><br>
+<p align="center"><a class="glightbox" href="./img/Git_config.gif" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img src="./img/Git_config.gif" width="1000"></a></p>
+Now that we have let Git know to store our GitHub token, we can create one. In order to create a GitHub token, you will need to run:<br><br>
+<pre>
+usethis::create_github_token()
+</pre>
+This will take you to a GitHub Webpage. It may prompt you to sign-in to GitHub. From here, you need to name your token and select an expiration date for your token. Then, scroll to the bottom of the page and left-click <kbd>Generate token</kbd>. These step are summarized in the GIF below:<br><br>
+<p align="center"><a class="glightbox" href="./img/GitHub_token_Part_1.gif" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img src="./img/GitHub_token_Part_1.gif" width="1000"></a></p>
+Next, you will want to copy your GitHub Token and go back to RStudio. We need to set our credentials by using the command:<br><br>
+<pre>
+gitcreds::gitcreds_set()
+</pre>
+Paste in your copied GitHub token and hit <kbd>Return/Enter</kbd>. It should return:<br><br>
+<pre>
+-> Adding new credentials...
+-> Removing credentials from cache...
+-> Done.
+</pre>
+These steps are summarized in the GIF below:<br><br>
+<p align="center"><a class="glightbox" href="./img/GitHub_token_Part_2.gif" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img src="./img/GitHub_token_Part_2.gif" width="1000"></a></p>
+Now you should have a hidden file called <code>.git-credentials</code> in your Home directory and it should look like:<br><br>
+<pre>
+https://PersonalAccessToken:YOUR_GITHUB_TOKEN@github.com
+</pre>
+Where <code>YOUR_GITHUB_TOKEN</code> has been replaced with your GitHub Token.<br><br>
+<blockquote>
+Note: In order to see hidden file in your file browser on the O2 Portal, you will need to click on the cog in the top right of the <code>Files</code> tab and select <code>Show Hidden Files</code>.
+</blockquote>
+Next, try pushing your repository to the HBC GitHub again with:<br><br>
+<pre>
+usethis::use_github(org="hbc",private=TRUE)
+</pre>
+<hr />
+</details>
+
+<h2 id="making-your-first-edit">Making your first edit<a class="headerlink" href="#making-your-first-edit" title="Permanent link">&para;</a></h2>
+<p>We will now make an edit and push that to GitHub. </p>
+<h3 id="editing-the-readmemd">Editing the <code>README.md</code><a class="headerlink" href="#editing-the-readmemd" title="Permanent link">&para;</a></h3>
+<p>We are going to edit the <code>README.MD</code> using these steps:</p>
+<ol>
+<li>Open the <code>README.md</code></li>
+<li>Change the header from <code>Guidelines</code> to the assigned HBC code for the project (<code>PI_brief_description_hbcXXXX</code>)</li>
+<li>Save the changes to <code>README.md</code></li>
+<li>Select the checkbox in the "Staged" area of the Git tab for the <code>README.md</code></li>
+<li>Left-click <kbd>Commit</kbd></li>
+<li>Add a commit description</li>
+<li>Left-click commit again</li>
+<li>Left-click <kbd>Close</kbd> to close the pop-up window for the commit</li>
+</ol>
+<p>These steps are summarized in the GIF below:</p>
+<p align="center"><a class="glightbox" href="./img/Guideline_commit_push.gif" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img src="./img/Guideline_commit_push.gif" width="1000"></a></p>
+<p><br></p>
+<h3 id="pushing-the-edit-to-github">Pushing the edit to GitHub<a class="headerlink" href="#pushing-the-edit-to-github" title="Permanent link">&para;</a></h3>
+<p>Now that we have made this commit, we will push it to GitHub using these steps:</p>
+<ol>
+<li>After completing your commit, left-click <kbd>Push</kbd></li>
+<li>Left-click <kbd>Close</kbd> to close the pop-up window for the push</li>
+<li>Close the additional pop-up window</li>
+<li>Navigate to the GitHub page for this repository</li>
+<li>Refresh the page if necessary</li>
+</ol>
+<p>You should now see the HBC code as the header to the <code>README.md</code> on GitHub. These steps are summarized in the GIF below:</p>
+<p align="center"><a class="glightbox" href="./img/Guideline_push.gif" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img src="./img/Guideline_push.gif" width="1000"></a></p>
+<p><br></p>
+<h1 id="tips-for-moving-forward">Tips for Moving Forward<a class="headerlink" href="#tips-for-moving-forward" title="Permanent link">&para;</a></h1>
+<p>Now that we've gotten set-up for our project, here are a few last tips to try to make your experience smooth:</p>
+<ul>
+<li>You are welcome to selectively commit and push the parts of these template reports that you would like to have on GitHub.</li>
+<li>Try to avoid editing files directly on GitHub. If you do, it will be important that you <code>Pull</code> the repository onto O2 before continuing on with your work on O2. If you forget to do this pull and make commits on O2, you can fix it, but it is beyond the scope of this guide.</li>
+<li>Use the checklist in the <code>README.md</code> to help keep track of your progress.</li>
+</ul>
+<h1 id="note">Note<a class="headerlink" href="#note" title="Permanent link">&para;</a></h1>
+<blockquote>
+<p>These materials have been developed by members of the teaching and platform team at the Harvard Chan Bioinformatics Core (HBC) RRID:SCR_025373. </p>
+</blockquote>
+
+
+
+
+
+
+
+  
+    
+  
+  
+
+
+  <aside class="md-source-file">
+    
+      
+  <span class="md-source-file__fact">
+    <span class="md-icon" title="Last update">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1-2.1-2M12.5 7v5.2l4 2.4-1 1L11 13V7h1.5M11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2v1.8Z"/></svg>
+    </span>
+    2025-06-17
+  </span>
+
+    
+    
+    
+    
+  </aside>
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12Z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    <script id="__config" type="application/json">{"base": ".", "features": ["navigation.tracking", "navigation.sections", "navigation.expand", "navigation.top", "navigation.tabs", "navigation.prune", "content.code.copy", "content.code.annotate"], "search": "assets/javascripts/workers/search.b8dbb3d2.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    
+    
+      <script src="assets/javascripts/bundle.1e8ae164.min.js"></script>
+      
+        <script src="javascripts/mathjax.js"></script>
+      
+        <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+      
+    
+  <script id="init-glightbox">const lightbox = GLightbox({"touchNavigation": true, "loop": false, "zoomable": true, "draggable": true, "openEffect": "zoom", "closeEffect": "zoom", "slideEffect": "slide"});
+document$.subscribe(() => { lightbox.reload() });
+</script></body>
+</html>

@@ -1,0 +1,20 @@
+
+R CMD javareconf
+apt-get install -y bwidget
+apt-get install -y default-jdk
+apt-get install -y git
+apt-get install -y gsfonts
+apt-get install -y imagemagick
+apt-get install -y jags
+apt-get install -y libcurl4-openssl-dev
+apt-get install -y libeigen3-dev
+apt-get install -y libglpk-dev
+apt-get install -y libgsl0-dev
+apt-get install -y libhiredis-dev
+apt-get install -y libmagick++-dev
+apt-get install -y libopenbabel-dev
+apt-get install -y libssl-dev
+apt-get install -y libxml2-dev
+apt-get install -y make
+apt-get install -y ocl-icd-opencl-dev
+apt-get install -y pandoc

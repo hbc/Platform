@@ -1,0 +1,765 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+        <link rel="prev" href="..">
+      
+      
+        <link rel="next" href="../environments/">
+      
+      
+      <link rel="icon" href="../theme_img/HBC_logo.png">
+      <meta name="generator" content="mkdocs-1.5.3, mkdocs-material-9.5.17">
+    
+    
+      
+        <title>Pipelines - HCBC Platform</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.bcfcd587.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inter:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Inter";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../stylesheets/extra.css">
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+   <link href="../assets/stylesheets/glightbox.min.css" rel="stylesheet"/><style>
+    html.glightbox-open { overflow: initial; height: 100%; }
+    .gslide-title { margin-top: 0px; user-select: text; }
+    .gslide-desc { color: #666; user-select: text; }
+    .gslide-image img { background: white; }
+    .gscrollbar-fixer { padding-right: 15px; }
+    .gdesc-inner { font-size: 0.75rem; }
+    body[data-md-color-scheme="slate"] .gdesc-inner { background: var(--md-default-bg-color);}
+    body[data-md-color-scheme="slate"] .gslide-title { color: var(--md-default-fg-color);}
+    body[data-md-color-scheme="slate"] .gslide-desc { color: var(--md-default-fg-color);}</style> <script src="../assets/javascripts/glightbox.min.js"></script></head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="blue-grey" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#introduction-to-hcbc-pipelines" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+
+
+<!-- Original Header -->
+
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href=".." title="HCBC Platform" class="md-header__button md-logo" aria-label="HCBC Platform" data-md-component="logo">
+      
+  <img src="../theme_img/HBC_logo_2.png" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            HCBC Platform
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Pipelines
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme)" data-md-color-scheme="default" data-md-color-primary="blue-grey" data-md-color-accent="indigo"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m14.3 16-.7-2h-3.2l-.7 2H7.8L11 7h2l3.2 9h-1.9M20 8.69V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12 20 8.69m-9.15 3.96h2.3L12 9l-1.15 3.65Z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="blue-grey" data-md-color-accent="indigo"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_2" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12 20 8.69Z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="blue-grey" data-md-color-accent="indigo"  aria-label="Switch to system preference"  type="radio" name="__palette" id="__palette_2">
+    
+      <label class="md-header__button md-icon" title="Switch to system preference" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12c0-2.42-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12 20 8.69Z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var media,input,key,value,palette=__md_get("__palette");if(palette&&palette.color){"(prefers-color-scheme)"===palette.color.media&&(media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']"),palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent"));for([key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+  </nav>
+  
+</header>
+
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href=".." class="md-tabs__link">
+        
+  
+    
+  
+  Home
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+    
+  
+  
+    <li class="md-tabs__item md-tabs__item--active">
+      <a href="./" class="md-tabs__link">
+        
+  
+    
+  
+  Pipelines
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../environments/" class="md-tabs__link">
+        
+  
+    
+  
+  Tools environments
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../devops/" class="md-tabs__link">
+        
+  
+    
+  
+  Platform members
+
+      </a>
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+  <div class="md-sidebar md-sidebar--primary" data-md-component="navigation">
+    <div class="md-sidebar__scrollwrap">
+      <div class="md-sidebar__inner">
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#data-management" class="md-nav__link">
+    <span class="md-ellipsis">
+      Data Management
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Data Management">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#aws" class="md-nav__link">
+    <span class="md-ellipsis">
+      AWS
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#move-data-inout-of-aws" class="md-nav__link">
+    <span class="md-ellipsis">
+      Move data in/out of AWS
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#parameters" class="md-nav__link">
+    <span class="md-ellipsis">
+      Parameters
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Parameters">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#rnaseq" class="md-nav__link">
+    <span class="md-ellipsis">
+      RNAseq
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#chipseq" class="md-nav__link">
+    <span class="md-ellipsis">
+      CHIPseq
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#cutrun" class="md-nav__link">
+    <span class="md-ellipsis">
+      CUT&amp;RUN
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#atacseq" class="md-nav__link">
+    <span class="md-ellipsis">
+      ATACseq
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#nextflow-in-seqera-platform" class="md-nav__link">
+    <span class="md-ellipsis">
+      Nextflow in Seqera platform
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Nextflow in Seqera platform">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#rnaseq_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      RNAseq
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#nextflow-in-o2" class="md-nav__link">
+    <span class="md-ellipsis">
+      Nextflow in O2
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Nextflow in O2">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#rnaseq_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      RNAseq
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#viralrecon" class="md-nav__link">
+    <span class="md-ellipsis">
+      viralrecon
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#nextflow-in-fas" class="md-nav__link">
+    <span class="md-ellipsis">
+      Nextflow in FAS
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      </div>
+    </div>
+  </div>
+
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+<h1 id="introduction-to-hcbc-pipelines">Introduction to HCBC pipelines<a class="headerlink" href="#introduction-to-hcbc-pipelines" title="Permanent link">&para;</a></h1>
+<p>Content - <a class="glightbox" href="https://img.shields.io/badge/status-WorkInProgress-yellow" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="https://img.shields.io/badge/status-WorkInProgress-yellow" /></a></p>
+<h2 id="data-management">Data Management<a class="headerlink" href="#data-management" title="Permanent link">&para;</a></h2>
+<h3 id="aws">AWS<a class="headerlink" href="#aws" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Samplesheet input files for pipelines<ul>
+<li><code>pipelineName_PI_hbcNNNNNN</code></li>
+<li>Have a copy in project folder in O2</li>
+<li>Manually removing weekly during platform meeting</li>
+</ul>
+</li>
+<li>Raw data is under <code>input</code> folder <ul>
+<li>See instructions below to move data in/out</li>
+<li><code>pipelineName_PI_hbcNNNNNN</code></li>
+<li>lifecycle 14 days</li>
+</ul>
+</li>
+<li>Pipeline outputs are under <code>results</code>:<ul>
+<li><code>pipelineName_PI_hbcNNNNNN</code></li>
+<li>lifecycle 14 days for bigger than 1gb</li>
+<li>Move output pipeline to project folder under <code>final</code> folder</li>
+</ul>
+</li>
+</ul>
+<h3 id="move-data-inout-of-aws">Move data in/out of AWS<a class="headerlink" href="#move-data-inout-of-aws" title="Permanent link">&para;</a></h3>
+<p>Follow this to copy data in and out of our AWS space:</p>
+<ul>
+<li>Log in into transfer node in O2</li>
+<li>Type <code>sudo -su bcbio</code> to be bcbio user</li>
+<li>Use this command to copy data to AWS:
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>/usr/local/bin/aws s3 sync $FOLDER_WITH_FASTQ s3://hcbc-seqera/input/rnaseq_piname_hbcNNNN
+</code></pre></div></li>
+<li>Use this command to copy data from AWS:
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>/usr/local/bin/aws s3 sync s3://hcbc-seqera/results/rnaseq_piname_hbcNNNN $FOLDER_PROJECT
+</code></pre></div>
+<strong>Make sure bcbio group has read/write access to the folders otherwise <code>aws</code> command won't work, but won't error either.</strong></li>
+</ul>
+<h2 id="parameters">Parameters<a class="headerlink" href="#parameters" title="Permanent link">&para;</a></h2>
+<h3 id="rnaseq">RNAseq<a class="headerlink" href="#rnaseq" title="Permanent link">&para;</a></h3>
+<ul>
+<li>We use salmon with bam files produced by STAR mapped to transcriptome for quantification</li>
+</ul>
+<h3 id="chipseq">CHIPseq<a class="headerlink" href="#chipseq" title="Permanent link">&para;</a></h3>
+<ul>
+<li>It can analyze multiple antibodies in one pipeline run (pipeline splits samples by antibody)</li>
+<li>Default parameters</li>
+<li>de-duplication for all samples</li>
+<li><code>bowtie</code> is set up with these extra parameters: <code>--sensitive-local -X 1000</code> (this is only true in seqera dev environment, not production)</li>
+<li><code>macs_gsize</code> needs to be setup for each species accordingly tools</li>
+</ul>
+<h3 id="cutrun">CUT&amp;RUN<a class="headerlink" href="#cutrun" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Run once per antibody (because pipeline does not split samples by antibody)</li>
+<li>Turn on <code>dedup_target_reads</code></li>
+<li>Use both <code>macs2</code> and <code>seacr</code> for peakcalling (list macs2 first so it is used as primary)</li>
+<li>Normalization mode is set to <code>CPM</code> (can be changed if client has spike-in samples)</li>
+<li>Depending on the number of samples, user may want to skip <code>deeptools</code> processes involving all samples</li>
+<li>processes including SAMTOOLS_SORT, BEDTOOLS_SORT, SAMTOOLS_CUSTOMVIEW, FRAG_LEN_HIST, and DEEPTOOLS_PLOTHEATMAP_GENE_ALL are given more memory than nf-core default</li>
+</ul>
+<h3 id="atacseq">ATACseq<a class="headerlink" href="#atacseq" title="Permanent link">&para;</a></h3>
+<p>All peaks <code>nf-core-atac-seq_shift</code>:
+- shift is on
+- keep_dup is false</p>
+<p>NFR peaks <code>nf-core-atac-seq_shift_NFR</code>:
+- same than previous except parameters for Aligmentsieve:
+  - <code>--minFragmentLength 0</code>
+  - <code>--maxFragmentLength 120</code></p>
+<p><strong>Note</strong>: Recommendation to check the fragment length distribution after the run to make sure you're capturing the NFRs.
+<strong>Note</strong>: We don't need the MN(180, 247), DN (315, 473) and TN (558, 615), unless it's a specific case where we are looking at global shifts in accessibility</p>
+<h2 id="nextflow-in-seqera-platform">Nextflow in Seqera platform<a class="headerlink" href="#nextflow-in-seqera-platform" title="Permanent link">&para;</a></h2>
+<ul>
+<li>Create an user here: <a href="https://cloud.seqera.io/login">https://cloud.seqera.io/login</a></li>
+<li>Ask Platform team to add you to HCBC workspace</li>
+<li>Transfer data to HCBC S3: Ask Alex/Lorena. Files will be at our S3 bucket <code>input/pipelineName_PI_hbcNNNNNN</code> folder</li>
+</ul>
+<h3 id="rnaseq_1">RNAseq<a class="headerlink" href="#rnaseq_1" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Prepare the CSV file according this <a href="https://nf-co.re/rnaseq/3.14.0/docs/usage#multiple-runs-of-the-same-sample">instructions</a>. File should look like this:</li>
+</ul>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>sample,fastq_1,fastq_2,strandedness
+<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>CONTROL_REP1,s3path/AEG588A1_S1_L002_R1_001.fastq.gz,s3path/AEG588A1_S1_L002_R2_001.fastq.gz,auto
+<a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a>CONTROL_REP1,s3path/AEG588A1_S1_L003_R1_001.fastq.gz,s3path/AEG588A1_S1_L003_R2_001.fastq.gz,auto
+<a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a>CONTROL_REP1,s3path/AEG588A1_S1_L004_R1_001.fastq.gz,s3path/AEG588A1_S1_L004_R2_001.fastq.gz,auto
+</code></pre></div>
+<p>Use <code>bcbio_nfcore_check(csv_file)</code> to check the file is correct.</p>
+<p>You can add more columns to this file with more metadata, and use this file as the <code>coldata</code> file in the templates.</p>
+<ul>
+<li>Safe the file under <code>meta</code> folder</li>
+<li>Upload this file to our <code>Datasets</code> in Seqera using the name of the project but starting with <code>pipelineName_PI_hbcNNNNNN</code></li>
+<li>Go to <code>Launchpad</code>, select <code>nf-core_rnaseq</code> pipeline, and select the previous created <code>Datasets</code> in the <code>input</code> parameter after clicking in <code>Browser</code></li>
+<li>Select an output directory with the same name used for the <code>Dataset</code> inside the <code>results/pipelineName_PI_hbcNNNNNN</code> folder in S3</li>
+<li>When pipeline is done, data will be copied to our on-premise HPC in the scratch system under <code>scratch/groups/hsph/hbc/bcbio/</code> folder</li>
+</ul>
+<h2 id="nextflow-in-o2">Nextflow in O2<a class="headerlink" href="#nextflow-in-o2" title="Permanent link">&para;</a></h2>
+<ul>
+<li>Nextflow is available at <code>/n/app/bcbio/nextflow/nextflow</code>. </li>
+<li>Singularity containers at available at <code>/n/app/singularity/containers/shared/bcbio/</code>.</li>
+<li>Cluster config: <code>/n/app/bcbio/nextflow/o2.config</code></li>
+</ul>
+<p>An example of sbatch script is:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>#!/bin/bash
+<a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>
+<a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a>#SBATCH --job-name=Nextflow      # Job name
+<a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a>#SBATCH --partition=priority            # Partition name
+<a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a>#SBATCH --time=1-23:59                 # Runtime in D-HH:MM format
+<a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a>#SBATCH --nodes=1                      # Number of nodes (keep at 1)
+<a id="__codelineno-3-7" name="__codelineno-3-7" href="#__codelineno-3-7"></a>#SBATCH --ntasks=1                     # Number of tasks per node (keep at 1)
+<a id="__codelineno-3-8" name="__codelineno-3-8" href="#__codelineno-3-8"></a>#SBATCH --cpus-per-task=1            # CPU cores requested per task (change for threaded jobs)
+<a id="__codelineno-3-9" name="__codelineno-3-9" href="#__codelineno-3-9"></a>#SBATCH --mem=12G                     # Memory needed per node (total)
+<a id="__codelineno-3-10" name="__codelineno-3-10" href="#__codelineno-3-10"></a>#SBATCH --error=jobid_%j.err           # File to which STDERR will be written, including job ID
+<a id="__codelineno-3-11" name="__codelineno-3-11" href="#__codelineno-3-11"></a>#SBATCH --output=jobid_%j.out          # File to which STDOUT will be written, including job ID
+<a id="__codelineno-3-12" name="__codelineno-3-12" href="#__codelineno-3-12"></a>#SBATCH --mail-type=ALL                # Type of email notification (BEGIN, END, FAIL, ALL)
+<a id="__codelineno-3-13" name="__codelineno-3-13" href="#__codelineno-3-13"></a>
+<a id="__codelineno-3-14" name="__codelineno-3-14" href="#__codelineno-3-14"></a>module load java/jdk-21.0.2
+<a id="__codelineno-3-15" name="__codelineno-3-15" href="#__codelineno-3-15"></a>export NXF_APPTAINER_CACHEDIR=/n/app/singularity/containers/shared/bcbio/nf-core-rnaseq-3.14.0
+<a id="__codelineno-3-16" name="__codelineno-3-16" href="#__codelineno-3-16"></a>export NXF_SINGULARITY_LIBRARYDIR=/n/app/singularity/containers/shared/bcbio/nf-core-rnaseq-3.14.0
+<a id="__codelineno-3-17" name="__codelineno-3-17" href="#__codelineno-3-17"></a>
+<a id="__codelineno-3-18" name="__codelineno-3-18" href="#__codelineno-3-18"></a>/n/app/bcbio/nextflow/nextflow run nf-core/rnaseq -r 3.14.0 -profile singularity \
+<a id="__codelineno-3-19" name="__codelineno-3-19" href="#__codelineno-3-19"></a>    -c /n/app/bcbio/nextflow/o2.config -c /n/app/bcbio/nextflow/rnaseq.resources.config \
+<a id="__codelineno-3-20" name="__codelineno-3-20" href="#__codelineno-3-20"></a>    -params-file /n/app/bcbio/nextflow/rnaseq.json \
+<a id="__codelineno-3-21" name="__codelineno-3-21" href="#__codelineno-3-21"></a>    --input samplesheet.csv --outdir this_folder -resume
+</code></pre></div>
+<h3 id="rnaseq_2">RNAseq<a class="headerlink" href="#rnaseq_2" title="Permanent link">&para;</a></h3>
+<p>Containers at <code>/n/app/singularity/containers/shared/bcbio/nf-core-rnaseq-3.14.0</code></p>
+<h3 id="viralrecon">viralrecon<a class="headerlink" href="#viralrecon" title="Permanent link">&para;</a></h3>
+<p>Read documentation <a href="https://nf-co.re/viralrecon/2.6.0/">here</a>. </p>
+<p>This is an example for test data:</p>
+<p><div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>module load java/jdk-21.0.2
+<a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>export NXF_APPTAINER_CACHEDIR=/n/app/singularity/containers/shared/bcbio/nf-core-viralrecon_2.6.0
+<a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a>export NXF_SINGULARITY_LIBRARYDIR=/n/app/singularity/containers/shared/bcbio/nf-core-viralrecon_2.6.0
+<a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a>
+<a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a>/n/app/bcbio/nextflow/nextflow run nf-core/viralrecon -r 2.6.0 -profile singularity,test --outdir this_folder -resume
+</code></pre></div>
+To run your data, prepare input file following this <a href="https://nf-co.re/viralrecon/2.6.0/docs/usage/#samplesheet-format">doc</a>, and run it like this:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>/n/app/bcbio/nextflow/nextflow run nf-core/viralrecon -r 2.6.0 -profile singularity --outdir this_folder --input samplesheet.csv -resume
+</code></pre></div>
+<h2 id="nextflow-in-fas">Nextflow in FAS<a class="headerlink" href="#nextflow-in-fas" title="Permanent link">&para;</a></h2>
+<p>We use FAS to run pipelines in scratch, main storage location for data is still O2. </p>
+<ul>
+<li>Run pipelines in scratch: <code>/n/netscratch/hsph_bioinfo/Lab</code></li>
+<li>Keep downstream analysis in PIs folder: <code>/n/holylfs05/LABS/hsph_bioinfo/Lab/PIs</code></li>
+</ul>
+<p>Pipelines that have been run so far in FAS:
+- rnaseq
+- scrnaseq
+- cutandrun</p>
+<p>Before using nextflow, you need to load a recent version of java:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>module load jdk/21.0.2-fasrc01
+</code></pre></div>
+<p>Use nextflow at <code>/n/holylfs05/LABS/hsph_bioinfo/Lab/shared_resources/nextflow/nextflow</code></p>
+<p>Use config file at <code>/n/holylfs05/LABS/hsph_bioinfo/Lab/shared_resources/nextflow/cannon.config</code></p>
+<p>Example command to run in an interactive job:
+Note that this is only for test datasets requiring minimal CPUs, memory, and parallelization. Otherwise, submit as sbatch. 
+<div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>/n/holylfs05/LABS/hsph_bioinfo/Lab/shared_resources/nextflow/nextflow run nf-core/rnaseq -profile test,singularity --outdir tmp -c /n/holylfs05/LABS/hsph_bioinfo/Lab/shared_resources/nextflow/fas.config
+</code></pre></div></p>
+<p>For non-test data, you will use sbatch to submit the head job of the pipeline, which will in turn submit the child jobs. 
+Modify this template as needed before using it:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a>#!/bin/bash
+<a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a>
+<a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a>#SBATCH --job-name=Nextflow      # Job name
+<a id="__codelineno-8-4" name="__codelineno-8-4" href="#__codelineno-8-4"></a>#SBATCH --partition=shared            # Partition name
+<a id="__codelineno-8-5" name="__codelineno-8-5" href="#__codelineno-8-5"></a>#SBATCH --time=0-48:59                 # Runtime in D-HH:MM format
+<a id="__codelineno-8-6" name="__codelineno-8-6" href="#__codelineno-8-6"></a>#SBATCH --nodes=1                      # Number of nodes (keep at 1)
+<a id="__codelineno-8-7" name="__codelineno-8-7" href="#__codelineno-8-7"></a>#SBATCH --ntasks=1                     # Number of tasks per node (keep at 1)
+<a id="__codelineno-8-8" name="__codelineno-8-8" href="#__codelineno-8-8"></a>#SBATCH --mem=16G                     # Memory needed per node (total)
+<a id="__codelineno-8-9" name="__codelineno-8-9" href="#__codelineno-8-9"></a>#SBATCH --error=jobid_%j.err           # File to which STDERR will be written, including job ID
+<a id="__codelineno-8-10" name="__codelineno-8-10" href="#__codelineno-8-10"></a>#SBATCH --output=jobid_%j.out          # File to which STDOUT will be written, including job ID
+<a id="__codelineno-8-11" name="__codelineno-8-11" href="#__codelineno-8-11"></a>#SBATCH --mail-type=ALL                # Type of email notification (BEGIN, END, FAIL, ALL)
+<a id="__codelineno-8-12" name="__codelineno-8-12" href="#__codelineno-8-12"></a>
+<a id="__codelineno-8-13" name="__codelineno-8-13" href="#__codelineno-8-13"></a>module load jdk/21.0.2-fasrc01
+<a id="__codelineno-8-14" name="__codelineno-8-14" href="#__codelineno-8-14"></a>
+<a id="__codelineno-8-15" name="__codelineno-8-15" href="#__codelineno-8-15"></a># modify these paths as necessary to point to the containers for the pipeline you&#39;re using
+<a id="__codelineno-8-16" name="__codelineno-8-16" href="#__codelineno-8-16"></a>export NXF_APPTAINER_CACHEDIR=/n/holylfs05/LABS/hsph_bioinfo/Lab/shared_resources/nextflow/nfcore-rnaseq
+<a id="__codelineno-8-17" name="__codelineno-8-17" href="#__codelineno-8-17"></a>export NXF_SINGULARITY_LIBRARYDIR=/n/holylfs05/LABS/hsph_bioinfo/Lab/shared_resources/nextflow/nfcore-rnaseq
+<a id="__codelineno-8-18" name="__codelineno-8-18" href="#__codelineno-8-18"></a>
+<a id="__codelineno-8-19" name="__codelineno-8-19" href="#__codelineno-8-19"></a># Optional: if you&#39;d like to monitor your run in Seqera Platform, set up a token there and use it here
+<a id="__codelineno-8-20" name="__codelineno-8-20" href="#__codelineno-8-20"></a>export TOWER_WORKSPACE_ID=268530979103043
+<a id="__codelineno-8-21" name="__codelineno-8-21" href="#__codelineno-8-21"></a>export TOWER_ACCESS_TOKEN=&lt;your_access_token&gt;
+<a id="__codelineno-8-22" name="__codelineno-8-22" href="#__codelineno-8-22"></a>
+<a id="__codelineno-8-23" name="__codelineno-8-23" href="#__codelineno-8-23"></a>OUTPUT=path_to_results
+<a id="__codelineno-8-24" name="__codelineno-8-24" href="#__codelineno-8-24"></a>
+<a id="__codelineno-8-25" name="__codelineno-8-25" href="#__codelineno-8-25"></a>/n/holylfs05/LABS/hsph_bioinfo/Lab/shared_resources/nextflow/nextflow run nf-core/rnaseq
+<a id="__codelineno-8-26" name="__codelineno-8-26" href="#__codelineno-8-26"></a>  -r 3.14.0 \
+<a id="__codelineno-8-27" name="__codelineno-8-27" href="#__codelineno-8-27"></a>  -profile singularity \
+<a id="__codelineno-8-28" name="__codelineno-8-28" href="#__codelineno-8-28"></a>  # next line is for passing pipeline parameters. can also insead use --params-file and use JSON downloaded from seqera
+<a id="__codelineno-8-29" name="__codelineno-8-29" href="#__codelineno-8-29"></a>  -c analysis.config \
+<a id="__codelineno-8-30" name="__codelineno-8-30" href="#__codelineno-8-30"></a>  # next line is for optimizing resource requests, file does not yet exist for all pipelines
+<a id="__codelineno-8-31" name="__codelineno-8-31" href="#__codelineno-8-31"></a>  -c rnaseq.resources.config \ 
+<a id="__codelineno-8-32" name="__codelineno-8-32" href="#__codelineno-8-32"></a>  --outdir $OUTPUT
+<a id="__codelineno-8-33" name="__codelineno-8-33" href="#__codelineno-8-33"></a>  -c cannon.config \
+<a id="__codelineno-8-34" name="__codelineno-8-34" href="#__codelineno-8-34"></a>  # next line optional, if you want to monitor your run in Seqera Platform
+<a id="__codelineno-8-35" name="__codelineno-8-35" href="#__codelineno-8-35"></a>  -with-tower
+<a id="__codelineno-8-36" name="__codelineno-8-36" href="#__codelineno-8-36"></a>  -resume
+</code></pre></div>
+
+
+
+
+
+
+
+  
+    
+  
+  
+
+
+  <aside class="md-source-file">
+    
+      
+  <span class="md-source-file__fact">
+    <span class="md-icon" title="Last update">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1-2.1-2M12.5 7v5.2l4 2.4-1 1L11 13V7h1.5M11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2v1.8Z"/></svg>
+    </span>
+    2025-06-17
+  </span>
+
+    
+    
+    
+    
+  </aside>
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12Z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    <script id="__config" type="application/json">{"base": "..", "features": ["navigation.tracking", "navigation.sections", "navigation.expand", "navigation.top", "navigation.tabs", "navigation.prune", "content.code.copy", "content.code.annotate"], "search": "../assets/javascripts/workers/search.b8dbb3d2.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.1e8ae164.min.js"></script>
+      
+        <script src="../javascripts/mathjax.js"></script>
+      
+        <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+      
+    
+  <script id="init-glightbox">const lightbox = GLightbox({"touchNavigation": true, "loop": false, "zoomable": true, "draggable": true, "openEffect": "zoom", "closeEffect": "zoom", "slideEffect": "slide"});
+document$.subscribe(() => { lightbox.reload() });
+</script></body>
+</html>
