@@ -164,28 +164,29 @@ We use FAS to run pipelines in scratch, main storage location for data is still 
 - Run pipelines in scratch: `/n/netscratch/hsph_bioinfo/Lab`
 - Keep downstream analysis in PIs folder: `/n/holylfs05/LABS/hsph_bioinfo/Lab/PIs`
 
+Pipelines that have been run so far in FAS:
+- rnaseq
+- scrnaseq
+- cutandrun
+
+Before using nextflow, you need to load a recent version of java:
+
 ```
 module load jdk/21.0.2-fasrc01
 ```
 
 Use nextflow at `/n/holylfs05/LABS/hsph_bioinfo/Lab/shared_resources/nextflow/nextflow`
 
-Use config file at `/n/holylfs05/LABS/hsph_bioinfo/Lab/shared_resources/nextflow/fas.config`
+Use config file at `/n/holylfs05/LABS/hsph_bioinfo/Lab/shared_resources/nextflow/cannon.config`
 
 Example command to run in an interactive job:
-
+Note that this is only for test datasets requiring minimal CPUs, memory, and parallelization. Otherwise, submit as sbatch. 
 ```
 /n/holylfs05/LABS/hsph_bioinfo/Lab/shared_resources/nextflow/nextflow run nf-core/rnaseq -profile test,singularity --outdir tmp -c /n/holylfs05/LABS/hsph_bioinfo/Lab/shared_resources/nextflow/fas.config
 ```
 
-For non-test data, this is the head job you need to submit. Copy first the config files and modified as  needed:
-
-```
-cp /n/holylfs05/LABS/hsph_bioinfo/Lab/shared_resources/nextflow/fas.config .
-cp /n/holylfs05/LABS/hsph_bioinfo/Lab/shared_resources/nextflow/rnaseq.config .
-```
-
-And then modify this template as needed before using it:
+For non-test data, you will use sbatch to submit the head job of the pipeline, which will in turn submit the child jobs. 
+Modify this template as needed before using it:
 
 ```
 #!/bin/bash
@@ -202,15 +203,26 @@ And then modify this template as needed before using it:
 
 module load jdk/21.0.2-fasrc01
 
+# modify these paths as necessary to point to the containers for the pipeline you're using
 export NXF_APPTAINER_CACHEDIR=/n/holylfs05/LABS/hsph_bioinfo/Lab/shared_resources/nextflow/nfcore-rnaseq
 export NXF_SINGULARITY_LIBRARYDIR=/n/holylfs05/LABS/hsph_bioinfo/Lab/shared_resources/nextflow/nfcore-rnaseq
 
+# Optional: if you'd like to monitor your run in Seqera Platform, set up a token there and use it here
+export TOWER_WORKSPACE_ID=268530979103043
+export TOWER_ACCESS_TOKEN=<your_access_token>
+
 OUTPUT=path_to_results
 
-/n/holylfs05/LABS/hsph_bioinfo/Lab/shared_resources/nextflow/nextflow run nf-core/rnaseq -r 3.14.0 \
+/n/holylfs05/LABS/hsph_bioinfo/Lab/shared_resources/nextflow/nextflow run nf-core/rnaseq
+  -r 3.14.0 \
   -profile singularity \
+  # next line is for passing pipeline parameters. can also insead use --params-file and use JSON downloaded from seqera
   -c analysis.config \
-  -c rnaseq.config \ 
-  --outdir $OUTPUT -c fas.config \
+  # next line is for optimizing resource requests, file does not yet exist for all pipelines
+  -c rnaseq.resources.config \ 
+  --outdir $OUTPUT
+  -c cannon.config \
+  # next line optional, if you want to monitor your run in Seqera Platform
+  -with-tower
   -resume
 ```
