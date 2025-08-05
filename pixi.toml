@@ -1,0 +1,23 @@
+[project]
+name = "hcbc-platform"
+version = "0.1.0"
+description = "HCBC Platform documentation site"
+authors = ["HCBC Team"]
+channels = ["conda-forge", "pyviz"]
+platforms = ["osx-64", "osx-arm64", "linux-64", "win-64"]
+
+[dependencies]
+python = ">=3.8"
+pip = "*"
+
+[pypi-dependencies]
+mkdocs-material = "*"
+pymdown-extensions = "*"
+mkdocs-glightbox = "*"
+mkdocs-pdf-export-plugin = "*"
+mkdocs-git-revision-date-plugin = "*"
+
+[tasks]
+serve = "mkdocs serve"
+build = "mkdocs build"
+clean = "mkdocs build --clean"
