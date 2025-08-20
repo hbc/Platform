@@ -52,6 +52,7 @@ Follow this to copy data in and out of our AWS space:
 ### CUT&RUN
 
 - Run once per antibody (because pipeline does not split samples by antibody)
+- In the samplesheet, if the number of samples in an antibody group is the same as the number of samples in its control group, the pipeline will match individual antibody samples to individual control samples using the replicate number. If the number of samples in the antibody group is **not** the same as the number of samples in the control group, then replicate 1 of the control group will be used as the control sample for all antibody samples. **You may not desire this behavior**. If not, you may consider selecting an optimal control for all samples in an antibody group and either 1) using this optimal control for all samples in the antibody group or 2) using paired controls when available and using this optimal control sample otherwise.
 - Turn on `dedup_target_reads`
 - Use both `macs2` and `seacr` for peakcalling (list macs2 first so it is used as primary)
 - Normalization mode is set to `CPM` (can be changed if client has spike-in samples)
