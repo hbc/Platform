@@ -1,0 +1,596 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+      
+        <link rel="next" href="pipelines/">
+      
+      
+      <link rel="icon" href="theme_img/HBC_logo.png">
+      <meta name="generator" content="mkdocs-1.5.3, mkdocs-material-9.5.17">
+    
+    
+      
+        <title>HCBC Platform</title>
+      
+    
+    
+      <link rel="stylesheet" href="assets/stylesheets/main.bcfcd587.min.css">
+      
+        
+        <link rel="stylesheet" href="assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inter:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Inter";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="stylesheets/extra.css">
+    
+    <script>__md_scope=new URL(".",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+   <link href="assets/stylesheets/glightbox.min.css" rel="stylesheet"/><style>
+    html.glightbox-open { overflow: initial; height: 100%; }
+    .gslide-title { margin-top: 0px; user-select: text; }
+    .gslide-desc { color: #666; user-select: text; }
+    .gslide-image img { background: white; }
+    .gscrollbar-fixer { padding-right: 15px; }
+    .gdesc-inner { font-size: 0.75rem; }
+    body[data-md-color-scheme="slate"] .gdesc-inner { background: var(--md-default-bg-color);}
+    body[data-md-color-scheme="slate"] .gslide-title { color: var(--md-default-fg-color);}
+    body[data-md-color-scheme="slate"] .gslide-desc { color: var(--md-default-fg-color);}</style> <script src="assets/javascripts/glightbox.min.js"></script></head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="blue-grey" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#welcome-to-hcbc-platform" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+
+
+<!-- Original Header -->
+
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="." title="HCBC Platform" class="md-header__button md-logo" aria-label="HCBC Platform" data-md-component="logo">
+      
+  <img src="theme_img/HBC_logo_2.png" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            HCBC Platform
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Home
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme)" data-md-color-scheme="default" data-md-color-primary="blue-grey" data-md-color-accent="indigo"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m14.3 16-.7-2h-3.2l-.7 2H7.8L11 7h2l3.2 9h-1.9M20 8.69V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12 20 8.69m-9.15 3.96h2.3L12 9l-1.15 3.65Z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="blue-grey" data-md-color-accent="indigo"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_2" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12 20 8.69Z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="blue-grey" data-md-color-accent="indigo"  aria-label="Switch to system preference"  type="radio" name="__palette" id="__palette_2">
+    
+      <label class="md-header__button md-icon" title="Switch to system preference" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12c0-2.42-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12 20 8.69Z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var media,input,key,value,palette=__md_get("__palette");if(palette&&palette.color){"(prefers-color-scheme)"===palette.color.media&&(media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']"),palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent"));for([key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+  </nav>
+  
+</header>
+
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+    
+  
+  
+    <li class="md-tabs__item md-tabs__item--active">
+      <a href="." class="md-tabs__link">
+        
+  
+    
+  
+  Home
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="pipelines/" class="md-tabs__link">
+        
+  
+    
+  
+  Pipelines
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="environments/" class="md-tabs__link">
+        
+  
+    
+  
+  Tools environments
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="devops/" class="md-tabs__link">
+        
+  
+    
+  
+  Platform members
+
+      </a>
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+  <div class="md-sidebar md-sidebar--primary" data-md-component="navigation">
+    <div class="md-sidebar__scrollwrap">
+      <div class="md-sidebar__inner">
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#set-up-the-package" class="md-nav__link">
+    <span class="md-ellipsis">
+      Set up the package
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#general-project" class="md-nav__link">
+    <span class="md-ellipsis">
+      General Project
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="General Project">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#create-the-rstudio-project" class="md-nav__link">
+    <span class="md-ellipsis">
+      Create the Rstudio project
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#using-the-template-reports" class="md-nav__link">
+    <span class="md-ellipsis">
+      Using the template reports
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#using-github" class="md-nav__link">
+    <span class="md-ellipsis">
+      Using Github
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      </div>
+    </div>
+  </div>
+
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+<h1 id="welcome-to-hcbc-platform">Welcome to HCBC Platform<a class="headerlink" href="#welcome-to-hcbc-platform" title="Permanent link">&para;</a></h1>
+<p>Welcome to our Platform guidelines web-page. Here analysts and developers will find guidelines on how to work with our most common environments.</p>
+<p>We are developing platforms for each analysis type we have experience with at HCBC.</p>
+<p>Most analyses will follow the similar trajectory for set-up. We will note where the trajectories diverge with tables where you will select the appropriate analysis.</p>
+<h2 id="set-up-the-package">Set up the package<a class="headerlink" href="#set-up-the-package" title="Permanent link">&para;</a></h2>
+<details>
+  <summary>O2 instructions- Click to expand!</summary>
+
+Log onto O2 via the command line and check two things (first-time only): 
+
+   * Remove `bcbio` from you `PATH` by commenting the line in your `.bashrc` if you have it
+   * Remove any path you load using the R env variables that could be in your `.Rprofile` or `.bashrc`
+
+Go to the [O2 Portal](https://o2portal.rc.hms.harvard.edu/) and select `HMS-RC Application`, then `RStudio Environment`
+<p align="center"><a class="glightbox" href="./img/O2_portal_page_with_label.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img src="./img/O2_portal_page_with_label.png" width="700"></a></p>
+
+Start Rstudio with using your desired partition, memory, core and time directives. Add the modules you use when using sbatch "Modules to be loaded". This is an example:
+  <div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>git/2.9.5  gcc/9.2.0 imageMagick/7.1.0 geos/3.10.2 cmake/3.22.2 R/4.3.1 fftw/3.3.10 gdal/3.1.4 udunits/2.2.28  boost/1.75.0
+</code></pre></div>
+   Click "Launch"
+
+<p align="center"><a class="glightbox" href="img/O2_portal_request.gif" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img src="img/O2_portal_request.gif" width="700"></a></p>
+
+Open RStudio by clicking on the "Connect to RStudio Server"
+
+<p align="center"><a class="glightbox" href="img/O2_connect_to_RStudio_with_label.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img src="img/O2_connect_to_RStudio_with_label.png" width="700"></a></p>
+
+When the session is started, make sure you have `bcbioR` installed.
+
+</details>
+
+<p></p>
+Next, load <code>bcbioR</code> with:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>library(bcbioR)
+</code></pre></div>
+<p>Check the package version of <code>bcbioR</code> using:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>packageVersion(&quot;bcbioR&quot;)
+</code></pre></div>
+<p>Make sure the version is <strong>0.4.*</strong> or later.</p>
+<p align="center"><a class="glightbox" href="./img/Version_check_bcbioR.gif" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img src="./img/Version_check_bcbioR.gif" width="700"></a></p>
+
+<blockquote>
+<p>Note: If you are working in your local environment, install <code>bcbioR</code> with
+<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>devtools::install_github(&quot;bcbio/bcbioR&quot;,build_manual = TRUE, build_vignettes = TRUE)
+</code></pre></div></p>
+</blockquote>
+<h2 id="general-project">General Project<a class="headerlink" href="#general-project" title="Permanent link">&para;</a></h2>
+<p>Use the app in the dropdown below to use the HBC app to set up a project's name. This name will be used for O2, FAS, GitHub and Dropbox. This name is likely already defined in the Trello card.</p>
+<details>
+<summary><b>Click here to use the HBC app for naming a project</b></summary>
+<p align="center"><iframe src="https://hcbc.connect.hms.harvard.edu/content/8cd62872-0ec9-4905-8920-c745d2375758/" width="800px" height="1000px" data-external="1"></iframe></p>
+</details>
+
+<p>This set up needs <a href="https://github.com/bcbio/bcbioR">bcbioR</a> and <a href="https://usethis.r-lib.org">usethis</a> packages. If you are working on the O2 Portal you will need to install it. Also, <code>usethis</code> is a dependency of <code>bcbioR</code>, so if you are working locally it should have come along with the download of <code>bcbioR</code>.</p>
+<h3 id="create-the-rstudio-project">Create the Rstudio project<a class="headerlink" href="#create-the-rstudio-project" title="Permanent link">&para;</a></h3>
+<p>Assign the path that you will be using as the path for your project to the object <code>project_path</code> into the <code>/n/data1/cores/bcbio/PIs</code> space on O2:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>project_path &lt;- &quot;/n/data1/cores/bcbio/PIs/PI_name/lastname_postdoc_rnaseq_human_heart_hbc00000&quot;
+</code></pre></div>
+<p>Now, we will need to create a directory using this path to put our analysis in. If this directory already exists, then you can skip this step. The directory creation can be done with this command:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>dir.create(project_path)
+</code></pre></div>
+<p>Now, we can open an Rproject for our analysis in this path using:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>usethis::proj_activate(project_path)
+</code></pre></div>
+<h2 id="using-the-template-reports">Using the template reports<a class="headerlink" href="#using-the-template-reports" title="Permanent link">&para;</a></h2>
+<p>Many analyses have template reports that you can use. You can use these by using the approriate <code>bcbioR::bcbio_templates()</code> command from the table below:</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: center;">Type of Analysis</th>
+<th style="text-align: left;"><code>bcbioR::bcbio_templates()</code> command</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;">Bulk RNA-seq <a class="glightbox" href="https://img.shields.io/badge/status-stable-blue" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="https://img.shields.io/badge/status-stable-blue" /></a></td>
+<td style="text-align: left;"><code>bcbioR::bcbio_templates(type="rnaseq", outpath="reports")</code></td>
+</tr>
+<tr>
+<td style="text-align: center;">Single-cell RNA-seq <a class="glightbox" href="https://img.shields.io/badge/status-beta-yellow" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="https://img.shields.io/badge/status-beta-yellow" /></a></td>
+<td style="text-align: left;"><code>bcbioR::bcbio_templates(type="singlecell", outpath="reports")</code></td>
+</tr>
+<tr>
+<td style="text-align: center;">ChIP-Seq <a class="glightbox" href="https://img.shields.io/badge/status-beta-yellow" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="https://img.shields.io/badge/status-beta-yellow" /></a></td>
+<td style="text-align: left;"><code>bcbioR::bcbio_templates(type="chipseq", outpath="reports")</code></td>
+</tr>
+<tr>
+<td style="text-align: center;">CellChat <a class="glightbox" href="https://img.shields.io/badge/status-draft-grey" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="https://img.shields.io/badge/status-draft-grey" /></a></td>
+<td style="text-align: left;"><strong>Under development:</strong> <code>bcbioR::bcbio_templates(type="singlecell_delux", outpath="reports")</code></td>
+</tr>
+<tr>
+<td style="text-align: center;">COSMX <a class="glightbox" href="https://img.shields.io/badge/status-draft-grey" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="https://img.shields.io/badge/status-draft-grey" /></a></td>
+<td style="text-align: left;"><code>bcbioR::bcbio_templates(type="spatial", outpath="reports")</code></td>
+</tr>
+<tr>
+<td style="text-align: center;">DNA Methylation</td>
+<td style="text-align: left;"><strong>Under development</strong></td>
+</tr>
+</tbody>
+</table>
+<p>Once again, let's just double check our version of <code>bcbioR</code> to make sure we are using version <strong>0.4.</strong> or later.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>packageVersion(&quot;bcbioR&quot;)
+</code></pre></div>
+<p>Now, we will use <code>bcbioR</code> to set-up the directory structure that we will be using for our analysis using the following command:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a>bcbioR::bcbio_templates(type=&quot;base&quot;, outpath=&quot;.&quot;, org=&quot;hcbc&quot;)
+</code></pre></div>
+<h2 id="using-github">Using Github<a class="headerlink" href="#using-github" title="Permanent link">&para;</a></h2>
+<p>Read full documentation <a href="github/">here</a>.</p>
+<p>Quick start:</p>
+<ul>
+<li>set this once on each computer <code>git config --global credential.helper store</code></li>
+<li>use this command and follow instruction to connect with GitHub <code>usethis::create_github_token()</code></li>
+<li>use this to create the repository the first time <code>usethis::use_github(org="hbc",private=TRUE)</code></li>
+<li>or clone the repository with <code>usethis::create_from_github("hbc/project_name")</code> if it already exists</li>
+</ul>
+<h1 id="tips-for-moving-forward">Tips for Moving Forward<a class="headerlink" href="#tips-for-moving-forward" title="Permanent link">&para;</a></h1>
+<p>Now that we've gotten set-up for our project, here are a few last tips to try to make your experience smooth:</p>
+<ul>
+<li>You are welcome to selectively commit and push the parts of these template reports that you would like to have on GitHub.</li>
+<li>Try to avoid editing files directly on GitHub. If you do, it will be important that you <code>Pull</code> the repository onto O2 before continuing on with your work on O2. If you forget to do this pull and make commits on O2, you can fix it, but it is beyond the scope of this guide.</li>
+<li>Use the checklist in the <code>README.md</code> to help keep track of your progress.</li>
+</ul>
+<h1 id="note">Note<a class="headerlink" href="#note" title="Permanent link">&para;</a></h1>
+<blockquote>
+<p>These materials have been developed by members of the teaching and platform team at the Harvard Chan Bioinformatics Core (HBC) RRID:SCR_025373. </p>
+</blockquote>
+
+
+
+
+
+
+
+  
+    
+  
+  
+
+
+  <aside class="md-source-file">
+    
+      
+  <span class="md-source-file__fact">
+    <span class="md-icon" title="Last update">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1-2.1-2M12.5 7v5.2l4 2.4-1 1L11 13V7h1.5M11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2v1.8Z"/></svg>
+    </span>
+    2025-08-29
+  </span>
+
+    
+    
+    
+    
+  </aside>
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12Z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    <script id="__config" type="application/json">{"base": ".", "features": ["navigation.tracking", "navigation.sections", "navigation.expand", "navigation.top", "navigation.tabs", "navigation.prune", "content.code.copy", "content.code.annotate"], "search": "assets/javascripts/workers/search.b8dbb3d2.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    
+    
+      <script src="assets/javascripts/bundle.1e8ae164.min.js"></script>
+      
+        <script src="javascripts/mathjax.js"></script>
+      
+        <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+      
+    
+  <script id="init-glightbox">const lightbox = GLightbox({"touchNavigation": true, "loop": false, "zoomable": true, "draggable": true, "openEffect": "zoom", "closeEffect": "zoom", "slideEffect": "slide"});
+document$.subscribe(() => { lightbox.reload() });
+</script></body>
+</html>
