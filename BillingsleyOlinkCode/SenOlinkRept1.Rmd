@@ -1,0 +1,502 @@
+
+---
+title: "SenOlinkReport1"
+author: "James Billingsley"
+date: "`r Sys.Date()`"
+output:
+  html_document:
+    code_folding: hide
+---
+
+```{r setup, include=FALSE, message=FALSE, warning = FALSE}
+knitr::opts_chunk$set(
+  echo = TRUE,
+  error = TRUE,
+  fig.align = "center",
+  fig.path = "/Users/jmb714/Desktop/figures/",
+  out.width = "75%",
+  message = FALSE,
+  warning = FALSE
+)
+
+clientname <- "Pritha Sen"
+clientemail <- "PSEN@BWH.HARVARD.EDU"
+labPI <- "Pritha Sen"
+lablocation <- "BWH"
+
+analystname <- "James Billingsley"
+analystemail <- "jbillingsley@hsph.harvard.edu"
+set.seed(42)
+datadir <- data_dir <- paste0(
+  "/Users/jmb714/Harvard University Dropbox/",
+  "HBC Team Folder (1)/Consults/pritha_sen/",
+  "sen_olink_human_blood_mpox_hbc05277/data/"
+)
+```
+
+**Olink REVEAL analysis of mpox samples [hbc05277] `r clientname`. **
+
+
+Contact `r analystname` (`r analystemail`) for additional details.
+
+The most recent update of this html document occurred: `r date()`
+
+
+The raw data are here: 
+
+```{r datadir}
+cat(datadir)
+```
+
+<br/>
+<br/>
+<br/>
+<br/>
+
+Olink Reveal data; Examining serum proteins in:
+
+1. Time course analysis of donors infected with Mpox, acute and resolution phases. 18 donors, Most with 3 timepoints, one with 4, some with a single timepoint.
+
+2. Time course analysis of participants receiving JYNNEOS mpox/smallpox prime-boost vaccine. Three timepoints, baseline (dose1), boost(dose2), postvacc.
+
+
+We have a single plate, 96 samples and 1037 assays. Some of the 96 samples are plate control samples and some of the assays are control assays.
+
+
+We'll examine each of the two experiments individually, and combined.
+
+Olink data (NPX) generally comes normalized with assay and sample QC flags from Olink. The experiment here uses the Reveal technology which measures approx 1000 proteins per well. 
+
+This experiment is a single plate experiment so no further normalization was required. If you have a multiplate experiment, additional normalization ,such as "bridging normalization" (between plates) will likely be required. This is readily done using the Olink_analyze R package. The package also provides convenient qc plotting functions and differential expression functions, both of which I use in this analysis.
+
+For QC, I look for flagged samples and assays, (no sample flags, 2 assay flags). I also do PCA plots looking for samples outliers (none found), and look for poorly performing assays. 
+
+To check for poorly performing assays, I look, for each assay, at the number of data points that fall below the Limit Of Detection.  In a multiplate experiment you can calculate the LOD for each assay using Sample controls on each plate. But for a single plate assay you cannot. In that case such as ours, Olink provides an LOD file that can be used as a substitute. 
+
+I plotted the percentage of below LOD data points for each assay. There was no obvious inflection point on the plot, so I chose to exclude any assays with greater than 95% below LOD data points. I think this is a sensible threshold for this technology and experiment. As a sanity check I also ran differential expression with no assays removed, and the results were quite similar. 
+
+Note, in this report I did not remove the two qc flagged assays. Please see the differential expression analyses reports for this project, for examples of filtering flagged assays.
+
+
+https://github.com/Olink-Proteomics/OlinkRPackage
+
+https://cran.r-project.org/web/packages/OlinkAnalyze/vignettes/LOD.html
+
+
+
+```{r libraries}
+library(tidyverse)
+library(Matrix)
+library(RCurl)
+library(knitr)
+library(patchwork)
+library(gridExtra)
+library(reshape2)
+library(Matrix.utils)
+library(DESeq2)
+library(EnhancedVolcano)
+library(OlinkAnalyze)
+library(readxl)
+```
+
+
+```{r readin}
+mpxv <- read.table(
+  file = "~/Desktop/MPXV_June2025_Extended_NPX_2025-06-17.csv",
+  sep  = ";",
+  h    = TRUE
+)
+
+glimpse(mpxv)
+hist(mpxv$NPX)
+
+mpxv %>%
+  summarise(
+    n_samples   = n_distinct(SampleID),
+    n_olink_ids = n_distinct(OlinkID),
+    n_assays    = n_distinct(Assay),
+    n_panels    = n_distinct(Panel),
+    n_wells     = n_distinct(WellID),
+    n_plate_ids = n_distinct(PlateID)
+  )
+```
+<br/>
+<br/>
+<br/>
+<br/>
+
+Some plots of samples in the full dataset
+
+```{r plotsA}
+olink_dist_plot(mpxv, color_g = "SampleQC") +
+  theme(
+    axis.text.x = element_text(angle = 90, hjust = 1, size = 5)
+  )
+
+olink_qc_plot(mpxv, color_g = "SampleQC", label_outliers = TRUE)
+
+olink_pca_plot(mpxv, color_g = "SampleQC", label_samples = TRUE)
+
+npx_flt <- mpxv %>%
+  filter(!str_detect(SampleID, regex("Control")))
+
+olink_dist_plot(npx_flt, color_g = "SampleQC") +
+  theme(
+    axis.text.x = element_text(angle = 90, hjust = 1, size = 5)
+  ) +
+  ggtitle("Control samples removed")
+
+olink_qc_plot(
+  npx_flt,
+  color_g         = "SampleQC",
+  label_outliers  = TRUE
+) +
+  ggtitle("Control samples removed")
+
+olink_pca_plot(npx_flt, color_g = "SampleQC", label_samples = TRUE)
+```
+
+<br/>
+<br/>
+<br/>
+<br/>
+
+Assay QC
+
+We'll look for assays that have a high percentage of normalized counts below published LOD.
+
+
+```{r qcAssays}
+mpxv <- olink_lod(
+  mpxv,
+  lod_file_path = "~/Desktop/Reveal_Fixed_LOD_csv_file.csv",
+  lod_method    = "FixedLOD"
+)
+
+assay_qc_summary <- mpxv %>%
+  group_by(OlinkID, Assay, AssayQC) %>%
+  summarise(
+    pct_below_lod = mean(NPX <= LOD, na.rm = TRUE),
+    cv            = sd(NPX, na.rm = TRUE) / mean(NPX, na.rm = TRUE),
+    .groups       = "drop"
+  ) %>%
+  arrange(desc(pct_below_lod), desc(cv))
+
+assay_qc_summary %>%
+  filter(pct_below_lod > 0.90) %>%
+  summarise(num_assays = n())
+
+ranked_assays <- assay_qc_summary %>%
+  arrange(pct_below_lod) %>%
+  mutate(order = row_number())
+
+ggplot(ranked_assays, aes(x = order, y = pct_below_lod)) +
+  geom_point(color = "steelblue") +
+  scale_y_continuous(labels = scales::percent_format(accuracy = 1)) +
+  labs(
+    title = "Percentage Below LOD by Assay (Ranked)",
+    x     = "Assay Rank (Low to High % Below LOD)",
+    y     = "% of Samples Below LOD"
+  ) +
+  theme_minimal()
+```
+
+<br/>
+<br/>
+<br/>
+<br/>
+
+The QC filter cutoff we use to reduce noise, (if we use one), is somewhat arbitrary. But I'll use here 90% as an example.
+
+70 assays have > 90 % data points below LOD
+
+If I use a 95% threshold it removes 35 assays
+
+If I use a 99% threshold it removes 10 assays
+
+
+
+```{r filter_low_detect}
+low_detect_assays <- assay_qc_summary %>%
+  filter(pct_below_lod >= 0.90) %>%
+  pull(OlinkID)
+
+clean_mpxv <- mpxv %>%
+  filter(!OlinkID %in% low_detect_assays) %>%
+  filter(!str_detect(SampleID, regex("Control"))) %>%
+  filter(
+    !Assay %in% c(
+      "Amplification control",
+      "Extension control",
+      "Incubation control"
+    )
+  )
+
+olink_pca_plot(clean_mpxv, color_g = "SampleQC", label_samples = TRUE)
+```
+
+<br/>
+<br/>
+<br/>
+<br/>
+
+
+```{r annotateFull}
+nat_ann <- read_excel("~/Desktop/250624 Annotations for MPXJYN Olink.xlsx")
+
+
+header_full_df <- clean_mpxv %>%
+  distinct(SampleID, WellID) %>%
+  arrange(SampleID) %>%
+  mutate(donor = str_sub(SampleID, 1, -3))
+
+counts_wide_full <- clean_mpxv %>%
+  select(SampleID, Assay, NPX) %>%
+  pivot_wider(
+    names_from   = Assay,
+    values_from  = NPX,
+    values_fill  = 0
+  ) %>%
+  arrange(SampleID)
+
+
+
+
+header_full_df <- header_full_df %>%
+  left_join(
+    nat_ann %>% select(sample_id, `NS Annotation`),
+    by = c("SampleID" = "sample_id")
+  ) %>%
+  dplyr::rename(ns_annotation = `NS Annotation`)
+
+expt <- c(rep("JYN", times = 45), rep("MPX", times = 41))
+header_full_df$expt <- expt
+
+
+final_df_full <- header_full_df %>%
+  left_join(counts_wide_full, by = "SampleID")
+```
+<br/>
+<br/>
+<br/>
+<br/>
+
+PCA MPX alone
+
+
+```{r pcampx}
+pca <- prcomp(
+  final_df_full[c(46:86), -c(1:5)],
+  scale. = TRUE
+)
+
+
+pca_scores <- as.data.frame(pca$x) %>%
+  mutate(
+    SampleID = final_df_full$SampleID[c(46:86)],
+    Donor = final_df_full$donor[c(46:86)],
+    NS_ann = final_df_full$ns_annotation[c(46:86)],
+    Expt = final_df_full$expt[c(46:86)]
+  )
+
+
+ggplot(pca_scores, aes(x = PC1, y = PC2, color = NS_ann, label = SampleID)) +
+  geom_point(size = 3) +
+  geom_text_repel(size = 3, max.overlaps = Inf) +
+  labs(
+    title = "PCA of Mpx data alone",
+    x = paste0("PC1 (", round(100 * summary(pca)$importance[2, 1], 1), "% variance)"),
+    y = paste0("PC2 (", round(100 * summary(pca)$importance[2, 2], 1), "% variance)")
+  ) +
+  theme_minimal()
+
+
+ggplot(pca_scores, aes(x = PC1, y = PC2, color = Donor)) +
+  geom_point(size = 3) +
+  labs(
+    title = "PCA of Mpx data alone",
+    x = paste0("PC1 (", round(100 * summary(pca)$importance[2, 1], 1), "% variance)"),
+    y = paste0("PC2 (", round(100 * summary(pca)$importance[2, 2], 1), "% variance)")
+  ) +
+  theme_minimal()
+
+ggplot(pca_scores, aes(x = PC1, y = PC3, color = Donor)) +
+  geom_point(size = 3) +
+  labs(
+    title = "PCA of Mpx data alone",
+    x = paste0("PC1 (", round(100 * summary(pca)$importance[2, 1], 1), "% variance)"),
+    y = paste0("PC3 (", round(100 * summary(pca)$importance[2, 3], 1), "% variance)")
+  ) +
+  theme_minimal()
+``` 
+  
+Very good segregation by time (and donor)
+ 
+<br/>
+<br/>
+<br/>
+<br/>
+
+PCA JYNNEOS alone
+
+```{r pca_JYN}
+pca_jyn <- prcomp(
+  final_df_full[1:45, -(1:5)],
+  scale. = TRUE
+)
+
+pca_scores_jyn <- pca_jyn$x %>%
+  as.data.frame() %>%
+  mutate(
+    sample_id     = final_df_full$SampleID[1:45],
+    donor         = final_df_full$donor[1:45],
+    ns_annotation = final_df_full$ns_annotation[1:45],
+    expt          = final_df_full$expt[1:45]
+  )
+
+ggplot(
+  pca_scores_jyn,
+  aes(x = PC1, y = PC2, color = ns_annotation)
+) +
+  geom_point(size = 3) +
+  labs(
+    title = "PCA of JYN data alone",
+    x = sprintf(
+      "PC1 (%0.1f%% variance)",
+      100 * summary(pca_jyn)$importance[2, 1]
+    ),
+    y = sprintf(
+      "PC2 (%0.1f%% variance)",
+      100 * summary(pca_jyn)$importance[2, 2]
+    )
+  ) +
+  theme_minimal()
+
+ggplot(
+  pca_scores_jyn,
+  aes(x = PC1, y = PC2, color = donor)
+) +
+  geom_point(size = 3) +
+  labs(
+    title = "PCA of JYN data alone",
+    x = sprintf(
+      "PC1 (%0.1f%% variance)",
+      100 * summary(pca_jyn)$importance[2, 1]
+    ),
+    y = sprintf(
+      "PC2 (%0.1f%% variance)",
+      100 * summary(pca_jyn)$importance[2, 2]
+    )
+  ) +
+  theme_minimal()
+
+ggplot(
+  pca_scores_jyn,
+  aes(x = PC1, y = PC3, color = ns_annotation)
+) +
+  geom_point(size = 3) +
+  labs(
+    title = "PCA of JYN data alone",
+    x = sprintf(
+      "PC1 (%0.1f%% variance)",
+      100 * summary(pca_jyn)$importance[2, 1]
+    ),
+    y = sprintf(
+      "PC3 (%0.1f%% variance)",
+      100 * summary(pca_jyn)$importance[2, 3]
+    )
+  ) +
+  theme_minimal()
+
+ggplot(
+  pca_scores_jyn,
+  aes(x = PC3, y = PC2, color = ns_annotation)
+) +
+  geom_point(size = 3) +
+  labs(
+    title = "PCA of JYN data alone",
+    x = sprintf(
+      "PC3 (%0.1f%% variance)",
+      100 * summary(pca_jyn)$importance[2, 3]
+    ),
+    y = sprintf(
+      "PC2 (%0.1f%% variance)",
+      100 * summary(pca_jyn)$importance[2, 2]
+    )
+  ) +
+  theme_minimal()
+```
+
+
+Some segregation by time, (0 is different than 56) and by donor
+
+<br/>
+<br/>
+<br/>
+<br/>
+  
+
+PCA all data
+
+
+```{r pca_full}
+pca_full <- prcomp(
+  final_df_full[, -(1:5)],
+  scale. = TRUE
+)
+
+pca_scores_full <- pca_full$x %>%
+  as.data.frame() %>%
+  mutate(
+    sample_id     = final_df_full$SampleID,
+    donor         = final_df_full$donor,
+    ns_annotation = final_df_full$ns_annotation,
+    expt          = final_df_full$expt
+  )
+
+ggplot(
+  pca_scores_full,
+  aes(x = PC1, y = PC2, color = expt)
+) +
+  geom_point(size = 3) +
+  labs(
+    title = "PCA of all data combined",
+    x = sprintf(
+      "PC1 (%0.1f%% variance)",
+      100 * summary(pca_full)$importance[2, 1]
+    ),
+    y = sprintf(
+      "PC2 (%0.1f%% variance)",
+      100 * summary(pca_full)$importance[2, 2]
+    )
+  ) +
+  theme_minimal()
+
+ggplot(
+  pca_scores_full,
+  aes(x = PC1, y = PC2, color = ns_annotation)
+) +
+  geom_point(size = 3) +
+  labs(
+    title = "PCA of all data combined",
+    x = sprintf(
+      "PC1 (%0.1f%% variance)",
+      100 * summary(pca_full)$importance[2, 1]
+    ),
+    y = sprintf(
+      "PC2 (%0.1f%% variance)",
+      100 * summary(pca_full)$importance[2, 2]
+    )
+  ) +
+  theme_minimal()
+```
+<br/>
+<br/>
+<br/>
+<br/>
+
+The Mpx and JYN data fairly segregate, no obvious clustering with a specific cluster of Mpx data, maybe closest to the 2 timepoint?
+
+```{r sessionInfo}
+sessionInfo()
+```

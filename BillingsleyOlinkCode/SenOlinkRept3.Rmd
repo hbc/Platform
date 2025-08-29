@@ -1,0 +1,480 @@
+
+---
+title: "SenOlinkReport3"
+author: "James Billingsley"
+date: "`r Sys.Date()`"
+output:
+  html_document:
+    code_folding: hide
+---
+
+```{r setup, include=FALSE, message=FALSE, warning = FALSE}
+knitr::opts_chunk$set(
+  echo = TRUE,
+  error = TRUE,
+  fig.align = "center",
+  fig.path = "/Users/jmb714/Desktop/figures/",
+  out.width = "75%",
+  message = FALSE,
+  warning = FALSE
+)
+
+clientname <- "Pritha Sen"
+clientemail <- "PSEN@BWH.HARVARD.EDU"
+labPI <- "Pritha Sen"
+lablocation <- "BWH"
+
+analystname <- "James Billingsley"
+analystemail <- "jbillingsley@hsph.harvard.edu"
+set.seed(42)
+datadir <- data_dir <- paste0(
+  "/Users/jmb714/Harvard University Dropbox/",
+  "HBC Team Folder (1)/Consults/pritha_sen/",
+  "sen_olink_human_blood_mpox_hbc05277/data/"
+)
+```
+
+
+**Olink REVEAL analysis of mpox samples [hbc05277] `r clientname`. **
+
+
+Contact `r analystname` (`r analystemail`) for additional details.
+
+The most recent update of this html document occurred: `r date()`
+
+
+The raw data are here: 
+
+```{r datadir}
+cat(datadir)
+```
+
+<br/>
+<br/>
+<br/>
+<br/>
+
+This report examines differential expression/abundance of serum proteins in the JYNNEOS Mpox prime-boost vaccine experiment. We have serial timepoints representing baseline (prime), boost, and two followup timepoints, i.e. D0, D28, D56 and D180.
+
+We will use linear mixed effects modeling and control for donor effects.
+
+We can look for proteins that change significantly over time, and also do post-tests to compare specific binary contrasts.
+
+In the QC process (slightly modified here from SenOlinkRept1.Rmd), we remove any assays that have ≥ 95% of their data points below LOD, and we remove the two QC flagged assays.
+
+This removes 79 assays leaving 953.
+
+We also run the analysis without removing these high LOD assays for comparison.
+
+
+
+
+```{r libraries}
+library(OlinkAnalyze)
+library(knitr)
+library(patchwork)
+library(tidyverse)
+library(readxl)
+library(UpSetR)
+library(ComplexHeatmap)
+library(forcats)
+```
+
+
+```{r readin}
+MPXV <- read.table(file = "~/Desktop/MPXV_June2025_Extended_NPX_2025-06-17.csv", sep = ";", h = TRUE)
+
+# add LOD data
+
+MPXV <- olink_lod(MPXV, lod_file_path = "~/Desktop/Reveal_Fixed_LOD_csv_file.csv", lod_method = "FixedLOD")
+
+
+# remove Control samples
+
+no_ctrl_MPXV <- MPXV %>%
+  filter(!str_detect(SampleID, regex("Control"))) # remove control samples
+
+
+# remove control assays
+
+
+no_ctrl_MPXV <- no_ctrl_MPXV %>%
+  filter(!Assay %in% c(
+    "Amplification control",
+    "Extension control",
+    "Incubation control"
+  )) # remove control assays!
+
+
+# remove flagged assays n=2
+
+
+warn_assays <- unique(no_ctrl_MPXV %>% filter(AssayQC == "WARN") %>% pull(Assay)) # two assays, "NPM1"   "SDHAF4"
+
+
+no_ctrl_MPXV <- no_ctrl_MPXV %>%
+  filter(!Assay %in% warn_assays)
+
+# length(unique(no_ctrl_MPXV$Assay))#1032
+
+
+# remove assays with ≥ 95% of datapoints reading below their published LOD.
+
+assay_qc_summary <- no_ctrl_MPXV %>%
+  group_by(Assay) %>%
+  summarise(
+    pct_below_LOD = mean(NPX <= LOD)
+  )
+
+
+low_detect_assays <- assay_qc_summary %>%
+  filter(pct_below_LOD >= 0.95) %>%
+  pull(Assay)
+
+
+clean_MPXV <- no_ctrl_MPXV %>%
+  filter(!Assay %in% low_detect_assays) # remove high LOD assays
+
+
+NatAnn <- read_excel("~/Desktop/250624 Annotations for MPXJYN Olink.xlsx")
+
+
+### Fix typo
+
+# which(NatAnn$sample_id == "JYN14-4")#62
+
+
+NatAnn$sample_id[62] <- "JYN14-5"
+
+
+header_Fulldf <- clean_MPXV %>%
+  distinct(SampleID) %>%
+  arrange(SampleID) %>%
+  mutate(
+    Donor = str_sub(SampleID, 1, -3)
+  ) %>%
+  left_join(
+    NatAnn %>%
+      select(sample_id, `NS Annotation`) %>%
+      rename(NS_annotation = `NS Annotation`),
+    by = c("SampleID" = "sample_id")
+  )
+
+
+
+Expt <- c(rep("JYN", times = 45), rep("MPX", times = 41))
+
+header_Fulldf$Expt <- Expt
+
+
+header_Fulldf$Donor <- factor(header_Fulldf$Donor)
+
+header_Fulldf$NS_annotation <- factor(header_Fulldf$NS_annotation)
+
+header_Fulldf$NExpt <- factor(header_Fulldf$Expt)
+
+
+annotated_long <- clean_MPXV %>%
+  left_join(header_Fulldf, by = "SampleID") # add annotation to my long form dataframe
+
+
+JYN_long <- annotated_long %>%
+  filter(Expt == "JYN")
+
+
+JYN_long %>%
+  select(SampleID, NS_annotation) %>%
+  distinct()
+
+
+# relevel
+
+
+JYN_long <- JYN_long %>%
+  mutate(
+    NS_annotation = fct_relevel(
+      NS_annotation,
+      "D0", "D28", "D56", "D180",
+      after = Inf
+    )
+  )
+
+JYN_lmer_results <- olink_lmer(
+  df       = JYN_long,
+  variable = "NS_annotation",
+  random   = "Donor"
+)
+
+
+# write.table(JYN_lmer_results, file="~/Desktop/JYN_lmer_results.txt", sep="\t", col.names=NA)
+
+
+JYN_posthoc <- olink_lmer_posthoc(
+  df            = JYN_long,
+  variable      = "NS_annotation",
+  random        = "Donor",
+  effect        = "NS_annotation",
+  verbose       = TRUE
+)
+
+# write.table(JYN_posthoc, file="~/Desktop/JYN_lmer_results_posthoc.txt", sep="\t", col.names=NA)
+
+
+signif_counts <- JYN_posthoc %>%
+  filter(Threshold == "Significant") %>%
+  group_by(contrast) %>%
+  summarise(n_signif = n(), .groups = "drop")
+
+
+ggplot(
+  signif_counts %>%
+    mutate(contrast = fct_reorder(contrast, n_signif, .desc = TRUE)),
+  aes(x = contrast, y = n_signif)
+) +
+  geom_col(fill = "steelblue") +
+  coord_flip() +
+  theme_minimal() +
+  labs(
+    x     = "Pairwise Contrast",
+    y     = "Number of Significant Proteins",
+    title = "DEPs per Contrast from NS_annotation"
+  )
+
+
+sig_sets <- JYN_posthoc %>%
+  filter(Threshold == "Significant") %>%
+  distinct(Assay, contrast) %>%
+  group_by(contrast) %>%
+  reframe(proteins = list(Assay))
+
+
+
+sig_list <- setNames(sig_sets$proteins, sig_sets$contrast)
+
+
+upset(fromList(sig_list),
+  order.by = "freq",
+  mb.ratio = c(0.6, 0.4),
+  main.bar.color = "steelblue",
+  sets.bar.color = "skyblue",
+  nsets = 6,
+  nintersects = NA
+)
+
+
+
+sig_proteins_lmm <- JYN_lmer_results %>%
+  filter(term == "NS_annotation", Threshold == "Significant") %>%
+  pull(Assay)
+
+
+sig_npx <- JYN_long %>%
+  filter(Assay %in% sig_proteins_lmm)
+
+mat <- sig_npx %>%
+  select(SampleID, Assay, NPX) %>%
+  pivot_wider(names_from = SampleID, values_from = NPX)
+
+rownames(mat) <- mat$Assay
+
+mat <- as.matrix(mat[, -1])
+
+mat_scaled <- t(scale(t(mat)))
+
+
+my_pal <- colorRampPalette(c("blue", "white", "red"))(256)
+
+
+Heatmap(
+  mat_scaled,
+  name = "Z-score",
+  cluster_rows = TRUE,
+  cluster_columns = TRUE,
+  col = my_pal,
+  show_row_names = TRUE,
+  show_column_names = TRUE,
+  column_title = "Samples",
+  row_title = "Significant Proteins"
+)
+```
+<br/>
+<br/>
+
+Comparing significantly differentially expressed proteins between D0 and D56, there are 168 proteins significantly downregulated at D56 and 21 proteins significantly upregulated at D56.
+
+Significance is at an adjusted p value of < 0.05.
+
+In the output file "estimate" represents log2FC.
+
+<br/>
+<br/>
+<br/>
+<br/>
+
+Some example boxplots
+
+
+```{r plotsB}
+baseline_vs_t3 <- JYN_posthoc %>%
+  filter(str_detect(contrast, "D0 - D56")) %>%
+  filter(Threshold == "Significant") %>%
+  arrange(Adjusted_pval)
+
+
+# baseline_vs_t3 %>% filter(estimate > 0) %>% nrow()#168
+
+# baseline_vs_t3 %>% filter(estimate < 0) %>% nrow()#21
+
+
+# head(baseline_vs_t3 %>% filter(estimate > 0))
+
+# baseline_vs_t3 %>% filter(estimate < 0)
+
+
+example_genes <- c("TNFRSF9", "VEGFD", "TRIM58")
+
+example_genes2 <- c("AGRP", "CCK", "BMP6")
+
+
+plot_data <- JYN_long %>%
+  filter(Assay %in% example_genes)
+
+plot_data2 <- JYN_long %>%
+  filter(Assay %in% example_genes2)
+
+
+
+
+ggplot(plot_data, aes(x = NS_annotation, y = NPX, fill = NS_annotation)) +
+  geom_boxplot(outlier.shape = NA) +
+  geom_jitter(width = 0.2, alpha = 0.6, size = 1.5) +
+  facet_wrap(~Assay, scales = "free_y") +
+  theme_bw() +
+  labs(
+    title = "Expression of Selected Proteins by NS_annotation",
+    x = "NS_annotation",
+    y = "NPX"
+  ) +
+  scale_fill_brewer(palette = "Set2")
+
+ggplot(plot_data2, aes(x = NS_annotation, y = NPX, fill = NS_annotation)) +
+  geom_boxplot(outlier.shape = NA) +
+  geom_jitter(width = 0.2, alpha = 0.6, size = 1.5) +
+  facet_wrap(~Assay, scales = "free_y") +
+  theme_bw() +
+  labs(
+    title = "Expression of Selected Proteins by NS_annotation",
+    x = "NS_annotation",
+    y = "NPX"
+  ) +
+  scale_fill_brewer(palette = "Set2")
+```
+<br/>
+<br/>
+<br/>
+<br/>
+
+
+If we run the experiment with no LOD assays removed, number assays = 1032
+
+
+Comparing significantly differentially expressed proteins between D0 and D56, there are 173 proteins significantly downregulated at D56 and 22 proteins significantly upregulated at D56.
+
+
+```{r noLODfilter, eval=F}
+# Run without removing high LOD assay_qc_summary
+
+
+no_ctrl_MPXV <- MPXV %>%
+  filter(!str_detect(SampleID, regex("Control"))) # remove control samples
+
+# remove control assays
+
+
+no_ctrl_MPXV <- no_ctrl_MPXV %>%
+  filter(!Assay %in% c(
+    "Amplification control",
+    "Extension control",
+    "Incubation control"
+  )) # remove control assays!
+
+
+# remove flagged assays n=2
+
+
+warn_assays <- unique(no_ctrl_MPXV %>%
+  filter(AssayQC == "WARN") %>%
+  pull(Assay)) # two assays, "NPM1"   "SDHAF4"
+
+
+no_ctrl_MPXV <- no_ctrl_MPXV %>%
+  filter(!Assay %in% warn_assays)
+
+clean_MPXV <- no_ctrl_MPXV
+
+annotated_long <- clean_MPXV %>%
+  left_join(header_Fulldf, by = "SampleID") # add annotation to my long form dataframe
+
+
+JYN_long <- annotated_long %>%
+  filter(Expt == "JYN")
+
+
+JYN_long %>%
+  select(SampleID, NS_annotation) %>%
+  distinct()
+
+
+# relevel
+
+
+
+JYN_long <- JYN_long %>%
+  mutate(
+    NS_annotation = fct_relevel(
+      NS_annotation,
+      "D0", "D28", "D56", "D180",
+      after = Inf
+    )
+  )
+
+
+JYN_lmer_results <- olink_lmer(
+  df       = JYN_long,
+  variable = "NS_annotation",
+  random   = "Donor"
+)
+
+
+# write.table(JYN_lmer_results, file="~/Desktop/JYN_lmer_results_noLODfilter.txt", sep="\t", col.names=NA)
+
+
+JYN_posthoc <- olink_lmer_posthoc(
+  df            = JYN_long,
+  variable      = "NS_annotation",
+  random        = "Donor",
+  effect        = "NS_annotation",
+  verbose       = TRUE
+)
+
+# write.table(JYN_posthoc, file="~/Desktop/JYN_lmer_results_posthoc_noLODfilter.txt", sep="\t", col.names=NA)
+
+
+baseline_vs_t3 <- JYN_posthoc %>%
+  filter(str_detect(contrast, "D0 - D56")) %>%
+  filter(Threshold == "Significant") %>%
+  arrange(Adjusted_pval)
+
+
+baseline_vs_t3 %>%
+  filter(estimate > 0) %>%
+  nrow() # 173
+
+baseline_vs_t3 %>%
+  filter(estimate < 0) %>%
+  nrow() # 22
+```
+
+```{r sessionInfo}
+sessionInfo()
+```
