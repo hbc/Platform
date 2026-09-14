@@ -164,6 +164,7 @@ We use FAS to run pipelines in scratch, main storage location for data is still 
 
 - Run pipelines in scratch: `/n/netscratch/hsph_bioinfo/Lab`
 - Keep downstream analysis in PIs folder: `/n/holylfs05/LABS/hsph_bioinfo/Lab/PIs`
+- Delete work folder after confirming the run worked, i.e. reviewing the QC report
 
 Pipelines that have been run so far in FAS:
 - rnaseq
