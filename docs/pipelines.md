@@ -160,11 +160,12 @@ To run your data, prepare input file following this [doc](https://nf-co.re/viral
 
 ## Nextflow in FAS
 
-We use FAS to run pipelines in scratch, main storage location for data is still O2. 
+We use FAS to run pipelines in scratch, **main storage location for data is still O2** (except for FAS and HSPH investigators). 
 
 - Run pipelines in scratch: `/n/netscratch/hsph_bioinfo/Lab`
-- Keep downstream analysis in PIs folder: `/n/holylfs05/LABS/hsph_bioinfo/Lab/PIs`
-- Delete work folder after confirming the run worked, i.e. reviewing the QC report
+- If you output downstream analysis in PIs folder, `/n/holylfs05/LABS/hsph_bioinfo/Lab/PIs`, copy the `final` directory to O2
+- Delete work folder after confirming the run worked, i.e. after reviewing the QC report
+- Code must be committed to Github before sending the QC to clients (incl. resources, .json params file, configs, run file, any Rmd files, etc.). Also copy Seurat objects if you need them for your project.
 
 Pipelines that have been run so far in FAS:
 - rnaseq
